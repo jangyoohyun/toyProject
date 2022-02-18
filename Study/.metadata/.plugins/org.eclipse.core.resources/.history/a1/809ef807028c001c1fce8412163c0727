@@ -1,0 +1,119 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+
+<div class="jumbotron mt-4" style="background-color: #E2E2E2">
+	<div class="container" style="width: 70%">
+	<h1 class="text-center">회원가입</h1>
+	
+		<form action="/join" method="post">
+			<div class="form-group">
+				<label for="userId" class="form-label">아이디</label>
+				<input type="text" class="form-control" id="userId" name="userId" placeholder="아이디" required>
+				<div class="check_font" id="id_check"></div>
+			</div>
+			
+			<div class="form-group mt-3">
+				<label class="form-label">비밀번호</label>
+				<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호" required>
+				<div class="check_font" id="pw_check"></div>
+			</div>
+			
+			<div class="form-group mt-3">
+				<label class="form-label">닉네임</label>
+				<input type="text" class="form-control" id="userNick" name="userNick" placeholder="닉네임" required>
+				<div class="check_font" id="nick_check"></div>
+			</div>
+			
+			<div class="btn-toolbar justify-content-end mt-3" role="toolbar" aria-label="Toolbar with button groups">
+			  <div class="btn-group">
+			    <button type="submit" class="btn btn-secondary" id="reg_submit">가입하기</button>
+			  </div>
+			</div>	
+		</form>
+		
+	</div>
+	<h5 class="text-center mt-3">가입하기를 원하지 않으시면 돌아가기 버튼을 눌러주세요.</h5>
+	<div class="text-center">
+		<a href="<c:url value="/"/>"><button class="btn" style="background-color: #d3d3d3">돌아가기</button></a>
+	</div>
+</div>
+
+<%@ include file="/WEB-INF/views/layout/footer.jsp" %>
+
+<script type="text/javascript">
+
+	var idJ = /^[a-z0-9]{4,12}$/;
+	var pwJ = /^[A-Za-z0-9]{4,12}$/; 
+	var nameJ = /^[가-힣]{2,6}$/;
+	var	nickJ = /^[가-힣]{2,10}$/;
+	var inval_Arr = new Array(1).fill(false);
+	
+	$("#userId").blur(function(){
+		
+		var userId = $('#userId').val();
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/idCheck?userId='+ userId,
+			type: 'POST',
+			 beforeSend : function(xhr) {
+                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+             },
+			success: function(data){
+				if(data == 1){
+					$("#id_check").text("사용중인 아이디입니다.");
+					$("#id_check").css("color", "red");
+					inval_Arr[0] = false;
+				} else {
+					if(idJ.test(userId)){
+						$("#id_check").text("사용 가능한 아이디입니다.");
+						$("#id_check").css("color", "blue");
+						inval_Arr[0] = true;
+					} else if(userId == ""){
+						$("#id_check").text("아이디를 입력해주세요.");
+						$("#id_check").css("color", "red");
+						inval_Arr[0] = false;
+					} else {
+						$("#id_check").text("아이디는 소문자와 숫자 4~12자리만 가능합니다.");
+						$("#id_check").css("color", "red");
+						inval_Arr[0] = false;
+					}
+				}
+			},error:function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	});
+	
+	
+	$("#userPwd").blur(function() {
+		if (pwJ.test($(this).val())){
+			$("#pw_check").text('사용 가능한 비밀번호입니다.');
+			$("#pw_check").css("color", "blue");
+			inval_Arr[0] = true;
+		} else {
+			$("#pw_check").text("비밀번호는 숫자 or 문자 4~12자리 입력 가능합니다.");
+			$("#pw_check").css("color", "red");
+			inval_Arr[1] = false;
+		}
+	});
+	
+	
+	$('#reg_submit').click(function(){
+		for(var i = 0; i <= inval_Arr.length; i++){
+			if(inval_Arr[i] == true){
+				$("#reg_submit").attr("disabled", false);
+				return "redirect:/index";
+			} else{
+				alert("다시 확인해주세요.");
+				return false;
+			}
+		}
+	});
+
+	
+</script> 
+
+</body>
+</html>

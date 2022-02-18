@@ -1,0 +1,8 @@
+package com.study.toyproject.web.dto;
+
+import lombok.Builder;
+
+@Builder
+public class UserDto {
+
+}

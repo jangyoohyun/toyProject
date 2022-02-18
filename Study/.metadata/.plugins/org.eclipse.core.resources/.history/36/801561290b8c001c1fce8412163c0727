@@ -1,0 +1,13 @@
+package com.study.toyproject.web.dto;
+
+public class JoinDto {
+	
+	private String username;
+	
+	private String password;
+	
+	private String name;
+	
+	private String phone;
+
+}

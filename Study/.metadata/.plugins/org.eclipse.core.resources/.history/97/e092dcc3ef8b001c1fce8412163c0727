@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /blog
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3366/toy?serverTimezone=UTC&characterEncoding=UTF-8
+    username: yoohyun
+    password: yoohyun1234
+    
+  mvc:
+    view:
+      prefix: /WEB-INF/views
+      suffix: .jsp
+  
+  security:
+    user:
+      name: test
+      password: 1234

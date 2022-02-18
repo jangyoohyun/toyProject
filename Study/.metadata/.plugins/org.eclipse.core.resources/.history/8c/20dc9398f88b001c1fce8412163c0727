@@ -1,0 +1,5 @@
+package com.study.toyproject.config;
+
+public class SecurityConfig {
+
+}

@@ -1,0 +1,36 @@
+package com.study.toyproject.web.auth;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.study.toyproject.domain.user.User;
+import com.study.toyproject.web.dto.JoinDto;
+
+
+
+@Controller
+public class AuthController {
+	
+	private final static java.util.logging.Logger Log = java.util.logging.Logger.getGlobal();
+
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		return "/auth/loginForm";
+	}
+	
+	@GetMapping("/joinForm")
+	public String joinForm() {
+		return "/auth/joinForm";
+	}
+	
+	@PostMapping("/join")
+	public String login(JoinDto joinDto) {
+		
+		User user = joinDto.toEntity();
+		Log.info(user.toString());
+		
+		return "/index";
+	}
+	
+}

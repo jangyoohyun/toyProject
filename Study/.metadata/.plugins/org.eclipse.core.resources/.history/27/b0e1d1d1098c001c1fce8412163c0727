@@ -1,0 +1,6 @@
+package com.study.toyproject.domain.user;
+
+
+public class User {
+
+}

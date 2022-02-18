@@ -1,0 +1,24 @@
+package com.study.toyproject.web.dto;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+public class JoinDto {
+	
+	@Size(min = 4, max = 20)
+	@NotBlank
+	private String username;
+	
+	@NotBlank
+	private String password;
+	
+	@NotBlank
+	private String name;
+	
+	
+
+}
