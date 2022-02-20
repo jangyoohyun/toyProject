@@ -8,9 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.study.toyproject.domain.user.User;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Getter
 public class PrincipalDetails implements UserDetails{
 
 	private static final long serialVersionUID = 1L;

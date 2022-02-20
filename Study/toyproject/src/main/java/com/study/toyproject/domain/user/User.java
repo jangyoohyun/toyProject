@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.study.toyproject.domain.board.Board;
+import com.study.toyproject.domain.photo.Photo;
 import com.study.toyproject.util.BaseTimeEntity;
 
 import lombok.AllArgsConstructor;
@@ -30,7 +33,7 @@ public class User extends BaseTimeEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String username;
 	
 	@Column(nullable = false)
@@ -43,8 +46,13 @@ public class User extends BaseTimeEntity{
 	
 	private String role;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"user"})
 	private List<Board> boards;
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"user"})
+	private List<Photo> photos;
 	
 
 }

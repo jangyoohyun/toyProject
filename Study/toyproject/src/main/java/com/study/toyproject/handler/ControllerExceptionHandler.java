@@ -14,9 +14,15 @@ import com.study.toyproject.web.dto.CMRespDto;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 	
-	@ExceptionHandler(CustomValidationException.class)
-	public String validationException(CustomValidationException e) {
-		return Script.back(e.getErrorMap().toString());
+	/*
+	 * @ExceptionHandler(CustomValidationException.class) public String
+	 * validationException(CustomValidationException e) { return
+	 * Script.back(e.getErrorMap().toString()); }
+	 */
+	
+	@ExceptionHandler
+	public String CustomException(Exception e) {
+		return Script.back(e.toString());
 	}
 
 }

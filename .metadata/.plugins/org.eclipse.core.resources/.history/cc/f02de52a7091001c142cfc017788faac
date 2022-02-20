@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+		<h1 class="text-center">다이어리 읽기</h1>
+		<br>
+		<div class="card">
+			<h5 class="card-header" style="text-align: center;">${photoView.photoTitle}</h5>
+			<div class="card-body">
+				<h5>${photoView.photoId}번째 게시물</h5>
+				<hr/>
+				<h5 class="card-title">${photoView.userNick}</h5>
+				<hr/>
+				<p class="card-text">${photoView.photoContent}</p>
+				<img src="${photoView.userPhoto}"/>
+			</div>
+		</div>
+		
+		<br>
+		<c:if test="${userId eq photoView.userId}">
+			<a href="/photo/photoModifyForm?photoId=${photoView.photoId}"><button type="button" class="btn btn-secondary float-right">수정</button></a>
+		</c:if>
+		<c:if test="${userId eq photoView.userId}">
+			<a href="/photo/photoDelete?photoId=${photoView.photoId}" onclick="if(!confirm('정말 삭제하시겠습니까?')){return false;}"><button type="button" class="btn btn-secondary float-right" id="deleteBtn">삭제</button></a>
+		</c:if>
+		<a href="<c:url value="/photo/photoMain?num=1"/>"><button class="btn" style="background-color: #d3d3d3; float: right;">목록으로</button></a>
+	</div>
+
+<script type="text/javascript">
+
+	
+	
+</script>
+
+</body>
+</html>

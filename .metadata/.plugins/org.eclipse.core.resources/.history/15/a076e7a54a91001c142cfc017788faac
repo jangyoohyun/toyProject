@@ -1,0 +1,5 @@
+package com.study.toyproject.domain.photo;
+
+public interface PhotoRepository {
+
+}

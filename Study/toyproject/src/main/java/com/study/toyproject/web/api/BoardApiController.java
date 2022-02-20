@@ -24,22 +24,20 @@ public class BoardApiController {
 	
 	@PostMapping("/api/board/write")
 	public CMRespDto<?> write(@RequestBody BoardDto boardDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-		Board board = boardDto.toEntity();
-		boardService.글작성(board, principalDetails.getUsername());
-		return new CMRespDto<>(1, "성공", null);
+		boardService.글작성(boardDto, principalDetails);
+		return new CMRespDto<>(1, "글 작성 성공", null);
 		
 	}
 
 	@PutMapping("/api/board/update/{id}")
 	public CMRespDto<?> update(@PathVariable int id, @RequestBody BoardDto boardDto){
-		Board board = boardDto.toEntity();
-		boardService.글수정(id, board);
-		return new CMRespDto<>(1, "업데이트 성공", null);
+		boardService.글수정(id, boardDto);
+		return new CMRespDto<>(1, "글 업데이트 성공", null);
 	}
 	
 	@DeleteMapping("/api/board/delete/{id}")
 	public CMRespDto<?> delete(@PathVariable int id) {
 		boardService.글삭제(id);
-		return new CMRespDto<>(1, "삭제 성공", null);
+		return new CMRespDto<>(1, "글 삭제 성공", null);
 	}
 }

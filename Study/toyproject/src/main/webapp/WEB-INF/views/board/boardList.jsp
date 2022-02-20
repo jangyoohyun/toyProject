@@ -3,7 +3,7 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-<table class="table table-hover table-striped mt-4 rounded"
+<table class="table table-hover table-striped mt-4 rounded border"
 	style="text-align: center">
 	<thead>
 		<tr>
@@ -17,7 +17,7 @@
 		<c:forEach items="${board.content}" var="board">
 			<tr>
 				<td>${board.id}</td>
-				<td>${board.writer}</td>
+				<td>${board.user.username}</td>
 				<td><a href="/board/${board.id}">${board.title}</a></td>
 				<td>${board.createDate}</td>
 			</tr>
@@ -35,14 +35,15 @@
   <ul class="pagination justify-content-center">
   
   <c:choose>
-  	<c:when test="${list.pageable.pageNumber == 1}">
+  
+  	<c:when test="${nowPage == startPage}">
   		<li class="page-item disabled">
-     		<a class="page-link" href="" tabindex="-1">처음</a>
+     		<a class="page-link" href="/board?page=${startPage - 1}" tabindex="-1">이전</a>
     	</li>
   	</c:when>
   	<c:otherwise>
   		<li class="page-item">
-     		<a class="page-link" href="/board/page=${nowPage - 1}" tabindex="-1">이전</a>
+     		<a class="page-link" href="/board?page=${startPage - 1}" tabindex="-1">이전</a>
     	</li>
   	</c:otherwise>
     
@@ -61,18 +62,18 @@
     </c:forEach>
     
     <c:choose>
-	  	<c:when test="${list.last}">
+	  	<c:when test="${endPage == nowPage}">
 	  		<li class="page-item disabled">
-	      <a class="page-link" href="/board/page=${endPage}">마지막</a>
-	    </li>
+	      	  <a class="page-link" href="/board?page=${endPage - 1}">다음</a>
+	    	</li>
 	  	</c:when>
 	  	<c:otherwise>
 	  		<li class="page-item">
-		      <a class="page-link" href="/board/page=${nowPage + 1}">마지막</a>
+		      <a class="page-link" href="/board?page=${endPage - 1}">다음</a>
 		    </li>
 	  	</c:otherwise>
+	  	
     </c:choose>
- 
     
   </ul>
 </nav>

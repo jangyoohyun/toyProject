@@ -5,8 +5,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.study.toyproject.config.auth.PrincipalDetails;
 import com.study.toyproject.domain.board.Board;
 import com.study.toyproject.domain.board.BoardRepository;
+import com.study.toyproject.web.dto.BoardDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,12 +19,10 @@ public class BoardService {
 	private final BoardRepository boardRepository;
 	
 	@Transactional
-	public Board 글작성(Board board, String username) {
+	public void 글작성(BoardDto boardDto, PrincipalDetails principalDetails) {
 		
-		Board boardEntity = boardRepository.save(board);
-		boardEntity.setWriter(username);
-		
-		return boardEntity;
+		Board boardEntity = boardDto.toEntity(principalDetails.getUser());
+		boardRepository.save(boardEntity);
 		
 	}
 
@@ -43,11 +43,11 @@ public class BoardService {
 	}
 
 	@Transactional
-	public void 글수정(int id, Board board) {
+	public void 글수정(int id, BoardDto boardDto) {
 		
 		Board updateBoard = boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("글 수정의 아이디를 찾을 수 없습니다.");});
-		updateBoard.setTitle(board.getTitle());
-		updateBoard.setContent(board.getContent());
+		updateBoard.setTitle(boardDto.getTitle());
+		updateBoard.setContent(boardDto.getContent());
 				
 	}
 

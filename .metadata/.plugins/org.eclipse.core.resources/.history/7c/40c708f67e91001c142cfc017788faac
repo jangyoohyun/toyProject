@@ -1,0 +1,11 @@
+let photoList = {
+	init: function() {
+		$("#btn-photoUpdate").on("click", () => {
+			this.photoUpdate();
+		});
+	},
+	
+	photoUpdate: function() {
+		let data
+	}
+}

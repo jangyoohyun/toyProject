@@ -29,10 +29,10 @@
 		    <div class="collapse navbar-collapse" id="navbarNav">
 		      <ul class="navbar-nav">
 		        <li class="nav-item">
-		          <a class="nav-link" href="<c:url value="/board"/>">다이어리</a>
+		          <a class="nav-link" href="<c:url value="/board?page=0"/>">다이어리</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="<c:url value="/photo/photoMain?num=1"/>">사진첩</a>
+		          <a class="nav-link" href="<c:url value="/photo"/>">사진첩</a>
 		        </li>
 		        <c:choose>
 		        	<c:when test="${principal.username == null}">
