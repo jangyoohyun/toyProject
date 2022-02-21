@@ -3,9 +3,13 @@ let photoList = {
 		$("#btn-photoUpdate").on("click", () => {
 			this.photoUpdate();
 		});
+
+		$("#btn-deleteById").on("click", () => {
+			this.deleteById();
+		});
 	},
-	
-	photoUpdate: function() {
+
+	/*photoUpdate: function() {
 
 		let id = $("#id").val();
 
@@ -17,7 +21,7 @@ let photoList = {
 
 		$.ajax({
 			type: "PUT",
-			url: "/api/photo/photoUpdate/"+id,
+			url: "/api/photo/photoUpdate/" + id,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset-utf-8",
 		}).done(res => {
@@ -26,8 +30,29 @@ let photoList = {
 			alert(JSON.stringify(error));
 		});
 
-	},
-	
+	},*/
+
+	deleteById: function() {
+
+		let id = $("#id").val();
+
+		var deleteConfirm = confirm("글을 삭제하시겠습니까?");
+
+		if (deleteConfirm == true) {
+			$.ajax({
+				type: "delete",
+				url: "/api/photo/photoDelete/" + id,
+				dataType: "json"
+			}).done(res => {
+				location.href = "/photo";
+			}).fail(error => {
+				console.log(error);
+			})
+		} else {
+			return false;
+		}
+	}
+
 }
 
 photoList.init();

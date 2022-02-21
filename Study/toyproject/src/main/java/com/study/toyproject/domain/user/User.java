@@ -8,10 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.study.toyproject.domain.board.Board;
+import com.study.toyproject.domain.comment.BoardComment;
 import com.study.toyproject.domain.photo.Photo;
 import com.study.toyproject.util.BaseTimeEntity;
 
@@ -53,6 +55,10 @@ public class User extends BaseTimeEntity{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"user"})
 	private List<Photo> photos;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnoreProperties({"user"})
+	private  List<BoardComment> boardComments;
 	
 
 }

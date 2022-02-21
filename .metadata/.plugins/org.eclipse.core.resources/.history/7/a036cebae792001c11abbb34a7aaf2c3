@@ -1,0 +1,7 @@
+package com.study.toyproject.web.dto;
+
+public class CommentDto {
+	
+	private String content;
+
+}

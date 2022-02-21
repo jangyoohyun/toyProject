@@ -1,0 +1,5 @@
+package com.study.toyproject.domain.comment;
+
+public interface CommentRepository {
+
+}

@@ -1,5 +1,8 @@
 package com.study.toyproject.domain.board;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.study.toyproject.domain.comment.BoardComment;
 import com.study.toyproject.domain.user.User;
 import com.study.toyproject.util.BaseTimeEntity;
 
@@ -41,6 +46,9 @@ public class Board extends BaseTimeEntity{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	private User user;
+	
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<BoardComment> boardComments;
 
 
 }

@@ -10,8 +10,8 @@
 		<form id="write_form"
 			onsubmit="return confirm('글을 등록하시겠습니까?');">
 			<div class="form-group">
-				<label class="form-label">제목</label> <input type="text"
-					class="form-control" id="title" name="title" placeholder="제목" required="required"/>
+				<label class="form-label">제목</label> 
+				<input type="text" class="form-control" id="title" name="title" placeholder="제목" required="required"/>
 			</div>
 			<br>
 			<div class="form-group">
@@ -20,6 +20,7 @@
 					id="content" name="content" placeholder="내용" required="required"></textarea>
 			</div>
 		</form>
+		
 		<button id="btn-save" form="write_form"
 			class="btn btn-secondary float-right">등록하기</button>
 		<a href="<c:url value="/board"/>"><button

@@ -1,0 +1,47 @@
+let photoList = {
+	init: function() {
+		$("#btn-photoUpdate").on("click", () => {
+			this.photoUpdate();
+		});
+	},
+	
+	photoUpdate: function() {
+
+		let id = $("#id").val();
+		
+		let photoImageUrl = $("#photoImageUrl")[0];
+		let formData = new FormData(photoImageUrl);
+
+		let data = {
+			title: $("#title").val(),
+			content: $("#content").val(),
+		};
+		
+		let photoImageUrl = $("#photoImageUrl")[0];
+		
+		let formData = new FormData(photoImageUrl);
+
+		$.ajax({
+			type: "PUT",
+			url: "/api/photo/photoUpdate/"+id,
+			data: data, formData,
+			contentType: false,
+			processData: false,
+			enctype: "multipart/form-data",
+			dataType: "json"
+		}).done(res => {
+			let reader = new FileReader();
+			reader.onload = (e) =>{
+				$("#photoImage").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
+			location.href = "/photo/" + id;
+		}).fail(error => {
+			alert(JSON.stringify(error));
+		});
+
+	},
+	
+}
+
+photoList.init();

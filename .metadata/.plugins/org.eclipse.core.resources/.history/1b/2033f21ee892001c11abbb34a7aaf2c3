@@ -1,0 +1,21 @@
+package com.study.toyproject.web.dto;
+
+import com.study.toyproject.domain.board.Board;
+import com.study.toyproject.domain.photo.Photo;
+import com.study.toyproject.domain.user.User;
+
+public class CommentDto {
+	
+	private String content;
+	
+	private User user;
+	
+	private Board board;
+	
+	private Photo photo;
+	
+	public Comment toEntity(User user) {
+		
+	}
+
+}

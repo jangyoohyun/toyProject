@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+
+<div class="jumbotron mt-4" style="background-color: #E2E2E2">
+	<div class="container" style="width: 80%">
+		<h1 class="text-center">다이어리 쓰기</h1>
+		<br>
+		<form id="write_form"
+			onsubmit="return confirm('글을 등록하시겠습니까?');">
+			<div class="form-group">
+				<label class="form-label">제목</label> <input type="text"
+					class="form-control" id="title" name="title" placeholder="제목" required="required"/>
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="from-label">내용</label>
+				<textarea style="resize: none" rows="10" class="form-control mt-1"
+					id="content" name="content" placeholder="내용" required="required"></textarea>
+			</div>
+		</form>
+		<button id="btn-save" form="write_form"
+			class="btn btn-secondary float-right">등록하기</button>
+		<a href="<c:url value="/board"/>"><button
+				class="btn float-end btn-info">목록으로</button></a>
+	</div>
+</div>
+
+<div class="card" id="comments">
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <label>댓글 작성</label>
+        <textarea class="form-control" id="comment-content" rows="3"></textarea>
+      </div>
+      <input type="hidden" id="comment-author" value="익명">
+      <button type="button" class="btn btn-primary" id="comment-create-btn">제출</button>
+    </form>
+  </div>
+</div>
+
+<script src="/js/board.js"></script>
+
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>

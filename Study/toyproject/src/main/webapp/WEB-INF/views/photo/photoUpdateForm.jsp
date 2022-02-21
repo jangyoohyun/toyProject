@@ -8,7 +8,7 @@
 	
 		<h1 class="text-center">사진첩 수정</h1>
 		<br>
-		<form enctype="multipart/form-data" id="photo_write"
+		<form action="/photo/photoUpdate/${photo.id}" method="post" enctype="multipart/form-data" id="photo_write"
 			onsubmit="return confirm('글을 수정하시겠습니까?');">
 			
 			<input type="hidden" id="id" value="${photo.id}"/>
@@ -36,7 +36,7 @@
 			
 		</form>
 		
-		<button id="btn-photoUpdate" form="photo_write"
+		<button type="submit" form="photo_write"
 			class="btn btn-secondary float-right">수정하기</button>
 		<a href="<c:url value="/photo"/>"><button
 				class="btn float-end" style="background-color: #d3d3d3">목록으로</button></a>

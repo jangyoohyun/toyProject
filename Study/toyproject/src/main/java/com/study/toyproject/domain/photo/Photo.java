@@ -1,13 +1,20 @@
 package com.study.toyproject.domain.photo;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.study.toyproject.domain.comment.PhotoComment;
 import com.study.toyproject.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -35,8 +42,12 @@ public class Photo {
 	
 	private String postImageUrl;
 	
+	@JsonIgnoreProperties({"photos"})
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
+	
+	@OneToMany(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<PhotoComment> photoComments;
 
 }

@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<br>
-		<a href="/board"><button class="btn btn-secondary">목록으로</button></a>
+		<a href="/photo"><button class="btn btn-secondary">목록으로</button></a>
 		
 		<c:if test="${photo.user.username == principal.username}">
 			<a href="/photo/${photo.id}/photoUpdateForm" class="btn btn-warning">수정</a>
@@ -30,6 +30,6 @@
 	</div>
 </div>
 
-<script src="/js/board.js"></script>
+<script src="/js/photo.js"></script>
 
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>

@@ -10,10 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.study.toyproject.config.auth.PrincipalDetails;
 import com.study.toyproject.domain.photo.Photo;
 import com.study.toyproject.service.PhotoService;
+import com.study.toyproject.web.dto.CMRespDto;
 import com.study.toyproject.web.dto.PhotoDto;
 
 import lombok.RequiredArgsConstructor;
@@ -68,6 +72,12 @@ public class PhotoController {
 		
 		photoService.사진업로드(photoDto, principalDetails);
 		
+		return "redirect:/photo";
+	}
+	
+	@PostMapping("/photo/photoUpdate/{id}")
+	public String update(@PathVariable int id, MultipartFile photoImageUrl, PhotoDto photoDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+		photoService.사진수정(id, photoDto, photoImageUrl);
 		return "redirect:/photo";
 	}
 	
