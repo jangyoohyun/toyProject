@@ -33,7 +33,7 @@ public class BoardComment extends BaseTimeEntity{
 	private int id;
 	
 	@Column(length = 100, nullable = false)
-	private String content;
+	private String commentContent;
 	
 	@JsonIgnoreProperties({"boards"})
 	@JoinColumn(name = "userId")

@@ -30,7 +30,7 @@ public class PhotoService {
 	private String uploadFolder;
 
 	@Transactional
-	public void 사진업로드(PhotoDto photoDto, PrincipalDetails principalDetails) {
+	public void photoUpload(PhotoDto photoDto, PrincipalDetails principalDetails) {
 
 		UUID uuid = UUID.randomUUID();
 		String photoFileName = uuid + "_" + photoDto.getFile().getOriginalFilename();
@@ -49,14 +49,14 @@ public class PhotoService {
 	}
 
 	@Transactional
-	public Page<Photo> 포토리스트(Pageable pageable) {
+	public Page<Photo> photoList(Pageable pageable) {
 
 		return photoRepository.findAll(pageable);
 
 	}
 
 	@Transactional
-	public Photo 사진수정(int id, PhotoDto photoDto, MultipartFile photoImageFile) {
+	public Photo photoUpdate(int id, PhotoDto photoDto, MultipartFile photoImageFile) {
 
 		UUID uuid = UUID.randomUUID();
 		String photoFileName = uuid + "_" + photoImageFile.getOriginalFilename();
@@ -82,7 +82,7 @@ public class PhotoService {
 	}
 
 	@Transactional(readOnly = true)
-	public Photo 사진읽기(int id) {
+	public Photo photoDetail(int id) {
 
 		photoRepository.findById(id).get();
 
@@ -93,8 +93,9 @@ public class PhotoService {
 	}
 	
 	@Transactional
-	public void 사진삭제(int id) {
+	public void photoDelete(int id) {
 		photoRepository.deleteById(id);
 	}
+
 
 }

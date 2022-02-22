@@ -26,26 +26,42 @@ public class BoardApiController {
 	
 	@PostMapping("/api/board/write")
 	public CMRespDto<?> write(@RequestBody BoardDto boardDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-		boardService.글작성(boardDto, principalDetails);
+		boardService.postWrite(boardDto, principalDetails);
 		return new CMRespDto<>(1, "글 작성 성공", null);
 		
 	}
 
 	@PutMapping("/api/board/update/{id}")
 	public CMRespDto<?> update(@PathVariable int id, @RequestBody BoardDto boardDto){
-		boardService.글수정(id, boardDto);
+		boardService.postUpdate(id, boardDto);
 		return new CMRespDto<>(1, "글 업데이트 성공", null);
 	}
 	
 	@DeleteMapping("/api/board/delete/{id}")
 	public CMRespDto<?> delete(@PathVariable int id) {
-		boardService.글삭제(id);
+		boardService.postDelete(id);
 		return new CMRespDto<>(1, "글 삭제 성공", null);
 	}
 	
 	@PostMapping("/api/board/comment/{id}")
 	public CMRespDto<?> commentWrite(@RequestBody BoardCommentDto boardCommentDto) {
-		boardService.댓글작성(boardCommentDto);
+		boardService.replyWrite(boardCommentDto);
 		return new CMRespDto<>(1, "댓글 작성", null);
+	}
+	
+	@DeleteMapping("/api/board/{boardId}/delete/{commentId}")
+	public CMRespDto<?> commentDelete(@PathVariable int commentId) {
+		
+		boardService.replyDelete(commentId);
+		
+		return new CMRespDto<>(1, "댓글 삭제 성공", null);
+	}
+	
+	@PutMapping("/api/board/{boardId}/update/{commentId}")
+	public CMRespDto<?> commentUpdate(@PathVariable int commentId, @RequestBody BoardCommentDto boardCommentDto) {
+		
+		boardService.replyUpdate(commentId, boardCommentDto);
+
+		return new CMRespDto<>(1, "댓글 수정 성공", null);
 	}
 }

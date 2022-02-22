@@ -22,7 +22,7 @@ public class PhotoApiController {
 	@DeleteMapping("/api/photo/photoDelete/{id}")
 	public CMRespDto<?> delete(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		photoService.사진삭제(id);
+		photoService.photoDelete(id);
 		
 		return new CMRespDto<>(1, "사진 삭제 성공", null);
 	}

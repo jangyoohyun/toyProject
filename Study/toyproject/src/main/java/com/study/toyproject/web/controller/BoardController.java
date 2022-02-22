@@ -33,7 +33,7 @@ public class BoardController {
 	@GetMapping("/board")
 	public String boardList(Model model, @PageableDefault(sort="id", direction = Sort.Direction.DESC) Pageable pageable) {
 		
-		Page<Board> list = boardService.글리스트(pageable);
+		Page<Board> list = boardService.postList(pageable);
 		
 		int nowPage = list.getPageable().getPageNumber()+1;
 		int startPage = Math.max(1, nowPage - 4);
@@ -57,14 +57,14 @@ public class BoardController {
 	@GetMapping("/board/{id}")
 	public String Detail(@PathVariable int id, Model model) {
 		
-		model.addAttribute("board", boardService.글읽기(id));
+		model.addAttribute("board", boardService.postDetail(id));
 		
 		return "/board/boardDetail";
 	}
 	
 	@GetMapping("/board/{id}/updateForm")
 	public String updateForm(@PathVariable int id, Model model) {
-		model.addAttribute("board", boardService.글읽기(id));
+		model.addAttribute("board", boardService.postDetail(id));
 		return "/board/updateForm";
 	}
 

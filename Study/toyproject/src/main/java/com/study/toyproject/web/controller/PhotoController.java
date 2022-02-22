@@ -31,7 +31,7 @@ public class PhotoController {
 	@GetMapping("/photo")
 	public String photoList(Model model, @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 		
-		Page<Photo> photo = photoService.포토리스트(pageable);
+		Page<Photo> photo = photoService.photoList(pageable);
 		
 		int nowPage = photo.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(1, nowPage - 4);
@@ -54,7 +54,7 @@ public class PhotoController {
 	@GetMapping("/photo/{id}")
 	public String photoDetail(@PathVariable int id, Model model) {
 		
-		model.addAttribute("photo", photoService.사진읽기(id));
+		model.addAttribute("photo", photoService.photoDetail(id));
 		
 		return "/photo/photoDetail";
 	}
@@ -62,7 +62,7 @@ public class PhotoController {
 	@GetMapping("/photo/{id}/photoUpdateForm")
 	public String photoUpdateForm(@PathVariable int id, Model model) {
 		
-		model.addAttribute("photo", photoService.사진읽기(id));
+		model.addAttribute("photo", photoService.photoDetail(id));
 		
 		return "/photo/photoUpdateForm";
 	}
@@ -70,14 +70,14 @@ public class PhotoController {
 	@PostMapping("/photo/photoWrite")
 	public String PhotoUpload(PhotoDto photoDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		photoService.사진업로드(photoDto, principalDetails);
+		photoService.photoUpload(photoDto, principalDetails);
 		
 		return "redirect:/photo";
 	}
 	
 	@PostMapping("/photo/photoUpdate/{id}")
 	public String update(@PathVariable int id, MultipartFile photoImageUrl, PhotoDto photoDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
-		photoService.사진수정(id, photoDto, photoImageUrl);
+		photoService.photoUpdate(id, photoDto, photoImageUrl);
 		return "redirect:/photo";
 	}
 	

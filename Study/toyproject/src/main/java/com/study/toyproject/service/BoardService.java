@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.study.toyproject.config.auth.PrincipalDetails;
 import com.study.toyproject.domain.board.Board;
 import com.study.toyproject.domain.board.BoardRepository;
+import com.study.toyproject.domain.comment.BoardComment;
 import com.study.toyproject.domain.comment.BoardCommentRepository;
 import com.study.toyproject.web.dto.BoardCommentDto;
 import com.study.toyproject.web.dto.BoardDto;
@@ -22,7 +23,7 @@ public class BoardService {
 	private final BoardCommentRepository boardCommentRepository;
 	
 	@Transactional
-	public void 글작성(BoardDto boardDto, PrincipalDetails principalDetails) {
+	public void postWrite(BoardDto boardDto, PrincipalDetails principalDetails) {
 		
 		Board boardEntity = boardDto.toEntity(principalDetails.getUser());
 		boardRepository.save(boardEntity);
@@ -30,14 +31,14 @@ public class BoardService {
 	}
 
 	@Transactional
-	public Page<Board> 글리스트(Pageable pageable) {
+	public Page<Board> postList(Pageable pageable) {
 		
 		return boardRepository.findAll(pageable);
 	}
 	
 	
 	@Transactional(readOnly = true)
-	public Board 글읽기(int id) {
+	public Board postDetail(int id) {
 		
 		boardRepository.findById(id).get();
 
@@ -46,7 +47,7 @@ public class BoardService {
 	}
 
 	@Transactional
-	public void 글수정(int id, BoardDto boardDto) {
+	public void postUpdate(int id, BoardDto boardDto) {
 		
 		Board updateBoard = boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("글 수정의 아이디를 찾을 수 없습니다.");});
 		updateBoard.setTitle(boardDto.getTitle());
@@ -55,16 +56,31 @@ public class BoardService {
 	}
 
 	@Transactional
-	public void 글삭제(int id) {
+	public void postDelete(int id) {
 		
 		boardRepository.deleteById(id);
 		
 	}
 
 	@Transactional
-	public void 댓글작성(BoardCommentDto boardCommentDto) {
+	public void replyWrite(BoardCommentDto boardCommentDto) {
+
+		boardCommentRepository.mSave(boardCommentDto.getUserId(), boardCommentDto.getBoardId(), boardCommentDto.getCommentContent());
 		
-		boardCommentRepository.mSave(boardCommentDto.getUserId(), boardCommentDto.getBoardId(), boardCommentDto.getContent());
+	}
+
+	@Transactional
+	public void replyDelete(int commentId) {
+		
+		boardCommentRepository.deleteById(commentId); 
+		
+	}
+
+	@Transactional
+	public void replyUpdate(int commentId, BoardCommentDto boardCommentDto) {
+		
+		BoardComment commentUpdate = boardCommentRepository.findById(commentId).orElseThrow(() -> {return new IllegalArgumentException("댓글 수정의 아이디를 찾을 수 업습니다.");});
+		commentUpdate.setCommentContent(boardCommentDto.getCommentContent());
 		
 	}
 	

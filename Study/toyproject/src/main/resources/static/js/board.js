@@ -11,7 +11,7 @@ let boardList = {
 		$("#btn-deleteById").on("click", () => {
 			this.deleteById();
 		})
-		
+
 		$("#btn-commentSave").on("click", () => {
 			this.commentSave();
 		})
@@ -80,17 +80,17 @@ let boardList = {
 		}
 
 	},
-	
+
 	commentSave: function() {
-		
+
 		let data = {
 			userId: $("#userId").val(),
 			boardId: $("#boardId").val(),
-			content: $("#content").val()
+			commentContent: $("#commentContent").val()
 		};
-		
-		console.log(data);
-		
+
+		alert(JSON.stringify(data));
+
 		$.ajax({
 			type: "POST",
 			url: `/api/board/comment/${data.boardId}`,
@@ -98,13 +98,71 @@ let boardList = {
 			contentType: "application/json; charset-utf-8",
 			dataType: "json"
 		}).done(res => {
-			location.href= `/board/${data.boardId}`;
+			location.href = `/board/${data.boardId}`;
 		}).fail(error => {
 			alert(JSON.stringify(error));
 		});
-		
+
 	},
 
+	commentDelete: function(boardId, commentId) {
+
+		let deleteConfirm = confirm("댓글을 삭제하시겠습니까?");
+
+		if (deleteConfirm == true) {
+			$.ajax({
+				type: "delete",
+				url: `/api/board/${boardId}/delete/${commentId}`,
+				dataType: "json"
+			}).done(res => {
+				location.href = "/board/" + boardId;
+			}).fail(error => {
+				alert(JSON.stringify(error));
+			});
+
+		} else {
+			return false;
+		}
+
+	},
+
+	commentUpdate: function(boardId, commentId) {
+		
+
+		if ($("#commentUpdateDisplay-" + commentId).css('display') == 'none') {
+			$("#commentUpdateDisplay-" + commentId).show();
+
+			$("#btn-commentUpdate-"+commentId).on("click", () => {
+		
+				let data = {
+					commentId: $("#commentId").val(),
+					commentUpdateContent: $("#commentUpdateContent").val()
+				}
+
+				alert(JSON.stringify(data));
+
+				$.ajax({
+					type: "PUT",
+					url: `/api/board/${boardId}/update/${commentId}`,
+					data: JSON.stringify(data),
+					contentType: "application/json; charset-utf-8"
+				}).done(res => {
+					alert(JSON.stringify(data));
+					location.href = `/board/${boardId}`;
+				}).fail(error => {
+					console.log(error);
+					alert(JSON.stringify(error));
+				});
+
+			});
+
+		} else {
+			$("#commentUpdateDisplay-" + commentId).hide();
+		}
+
+	}
+
 }
+
 
 boardList.init();
