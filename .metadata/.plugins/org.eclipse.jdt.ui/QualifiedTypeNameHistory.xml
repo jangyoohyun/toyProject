@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="com.study.toyproject.domain.photo.PhotoRepository"/>
     <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="com.study.toyproject.service.PhotoService"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="com.study.toyproject.web.dto.BoardCommentDto"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="com.study.toyproject.domain.comment.PhotoCommentRepository"/>
+    <fullyQualifiedTypeName name="com.study.toyproject.web.dto.PhotoCommentDto"/>
 </qualifiedTypeNameHistroy>

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface PhotoCommentRepository extends JpaRepository<PhotoComment, Integer>{
 
 	@Modifying
-	@Query(value = "INSERT INTO photocomment(userId, photoId, commentContent, createDate) values(?1, ?2, ?3, now())", nativeQuery = true)
-	int mSave(int userId, int photoId, String commentContent);
+	@Query(value = "INSERT INTO boardcomment(userId, boardId, commentContent, createDate) values(?1, ?2, ?3, now())", nativeQuery = true)
+	int mSave(int userId, int boardId, String commentContent);
 
 }

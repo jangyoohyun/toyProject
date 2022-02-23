@@ -105,7 +105,7 @@ public class PhotoService {
 	@Transactional
 	public void replyWrite(PhotoCommentDto photoCommentDto) {
 
-		photoCommentRepository.mSave(photoCommentDto.getUserId(), photoCommentDto.getPhotoId(), photoCommentDto.getPhotoCommentContent());
+		photoCommentRepository.mSave(photoCommentDto.getUserId(), photoCommentDto.getBoardId(), photoCommentDto.getPhotoCommentContent());
 		
 	}
 

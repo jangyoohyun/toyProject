@@ -33,7 +33,7 @@ public class PhotoComment extends BaseTimeEntity{
 	private int id;
 	
 	@Column(length = 100, nullable = false)
-	private String photoCommentContent;
+	private String content;
 	
 	@JsonIgnoreProperties({"photos"})
 	@JoinColumn(name = "userId")

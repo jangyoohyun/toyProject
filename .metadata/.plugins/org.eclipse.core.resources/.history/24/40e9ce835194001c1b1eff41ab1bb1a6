@@ -30,7 +30,6 @@
 	</div>
 </div>
 
-
 <div class="card mb-4">
 	<form>
 		<input type="hidden" id="userId" value="${principal.user.id}" /> <input
