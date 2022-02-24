@@ -1,0 +1,13 @@
+function btnUserUpdate(userId) {
+	
+	let data = $("#userUpdate").serialize();
+	
+	$.ajax({
+		
+	}).done(res => {
+		
+	}).fail(error =>{
+		
+	});
+	
+}

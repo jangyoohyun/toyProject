@@ -42,11 +42,11 @@ public class Board extends BaseTimeEntity{
 	@Column(nullable = false)
 	private String content;
 	
-	@JsonIgnoreProperties({"boards"})
+	@JsonIgnoreProperties({"boards", "photos"})
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	private User user;
-	
+
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<BoardComment> boardComments;
 

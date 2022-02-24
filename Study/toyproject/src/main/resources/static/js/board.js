@@ -89,19 +89,25 @@ let boardList = {
 			commentContent: $("#commentContent").val()
 		};
 
-		alert(JSON.stringify(data));
+		let commentSaveConfirm = confirm("댓글을 등록하시겠습니까?");
 
-		$.ajax({
-			type: "POST",
-			url: `/api/board/comment/${data.boardId}`,
-			data: JSON.stringify(data),
-			contentType: "application/json; charset-utf-8",
-			dataType: "json"
-		}).done(res => {
-			location.href = `/board/${data.boardId}`;
-		}).fail(error => {
-			alert(JSON.stringify(error));
-		});
+		if (commentSaveConfirm == true) {
+			$.ajax({
+				type: "POST",
+				url: `/api/board/comment/${data.boardId}`,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset-utf-8",
+				dataType: "json"
+			}).done(res => {
+				location.href = `/board/${data.boardId}`;
+			}).fail(error => {
+				alert(JSON.stringify(error));
+			});
+		} else {
+			return false;
+		}
+
+
 
 	},
 
@@ -127,32 +133,36 @@ let boardList = {
 	},
 
 	commentUpdate: function(boardId, commentId) {
-		
+
 
 		if ($("#commentUpdateDisplay-" + commentId).css('display') == 'none') {
 			$("#commentUpdateDisplay-" + commentId).show();
 
-			$("#btn-commentUpdate-"+commentId).on("click", () => {
-		
-				let data = {
-					commentId: $("#commentId").val(),
-					commentUpdateContent: $("#commentUpdateContent").val()
+			$("#btn-commentUpdate-" + commentId).on("click", () => {
+
+				let commentConfirm = confirm("댓글을 수정하시겠습니까?");
+
+				if (commentConfirm == true) {
+					let data = {
+						commentContent: $("#commentUpdateContent-" + commentId).val()
+					}
+
+					$.ajax({
+						type: "PUT",
+						url: `/api/board/${boardId}/update/${commentId}`,
+						data: JSON.stringify(data),
+						contentType: "application/json; charset-utf-8"
+					}).done(res => {
+						location.href = `/board/${boardId}`;
+					}).fail(error => {
+						console.log(error);
+						alert(JSON.stringify(error));
+					});
+				} else {
+					return false;
 				}
 
-				alert(JSON.stringify(data));
 
-				$.ajax({
-					type: "PUT",
-					url: `/api/board/${boardId}/update/${commentId}`,
-					data: JSON.stringify(data),
-					contentType: "application/json; charset-utf-8"
-				}).done(res => {
-					alert(JSON.stringify(data));
-					location.href = `/board/${boardId}`;
-				}).fail(error => {
-					console.log(error);
-					alert(JSON.stringify(error));
-				});
 
 			});
 

@@ -1,7 +1,0 @@
-let photoList = {
-	init: function() {
-		$("#btn-photoUpdate").on("click", () => {
-			this.save();
-		});
-	},
-}

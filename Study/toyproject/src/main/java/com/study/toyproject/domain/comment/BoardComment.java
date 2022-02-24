@@ -35,11 +35,12 @@ public class BoardComment extends BaseTimeEntity{
 	@Column(length = 100, nullable = false)
 	private String commentContent;
 	
-	@JsonIgnoreProperties({"boards"})
+	@JsonIgnoreProperties({"boards", "photos"})
 	@JoinColumn(name = "userId")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	
+	@JsonIgnoreProperties({"boardComments"})
 	@JoinColumn(name = "boardId")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Board board;

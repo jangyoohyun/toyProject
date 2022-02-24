@@ -1,0 +1,5 @@
+function btnUserUpdate(userId) {
+	
+	let data = $("#userUpdate").serialize();
+	
+}

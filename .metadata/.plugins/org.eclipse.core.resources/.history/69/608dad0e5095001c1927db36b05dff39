@@ -1,0 +1,18 @@
+function btnUserUpdate(userId) {
+	
+	let data = $("#userUpdate").serialize();
+	
+	$.ajax({
+		type: "put",
+		url: `/api/auth/${userId}/update`,
+		data: data,
+		contentType: "application/x-www-form-urlencoded;charset=UTF-8"
+		dataType: "json"
+	}).done(res => {
+		console.log("성공", res);
+		location.href="/";
+	}).fail(error =>{
+		alert(JSON.stringify(error));
+	});
+	
+}

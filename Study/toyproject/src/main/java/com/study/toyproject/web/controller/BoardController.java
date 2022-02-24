@@ -67,5 +67,5 @@ public class BoardController {
 		model.addAttribute("board", boardService.postDetail(id));
 		return "/board/updateForm";
 	}
-
+	
 }

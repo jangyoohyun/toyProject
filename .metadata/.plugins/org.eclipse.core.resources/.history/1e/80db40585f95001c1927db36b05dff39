@@ -1,0 +1,37 @@
+auth = {
+	init: function() {
+		$("#btnUserUpdate").on("click", () => {
+			this.btnUserUpdate();
+		})
+	},
+	
+	
+	btnUserUpdate: function() {
+		
+		let data = {
+			userId: $("#userId").val(),
+			password: $("#password").val(),
+			name: $("#name").val(),
+			phone: $("#phone").val()
+		}
+		
+		console.log(data);
+		
+		$.ajax({
+			type: "put",
+			url: `/api/auth/${data.userId}/update`,
+			data: JSON.stringify(data),
+			contentType: "application/json; charset-utf-8",
+			dataType: "json"
+		}).done(res => {
+			alert(JSON.stringify(data));
+			location.href="/";
+		}).fail(error => {
+			alert(JSON.stringify(error));
+		});
+		
+	}
+
+}
+
+auth.init();

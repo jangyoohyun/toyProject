@@ -1,0 +1,32 @@
+auth = {
+	init: function() {
+		$("#btn-userUpdate").on("click", () => {
+			this.userUpdate();
+		});
+	},
+	
+	userUpdate: function() {
+		
+		let data = {
+			userId: $("#userId").val(),
+			name: $("#name").val(),
+			photo: $("#phone").val()
+		}
+		
+		$.ajax({
+			type: "put",
+			url: `/api/auth/${data.userId}/update`,
+			contentType: "application/json; charset-utf-8",
+			data: JSON.stringify(data)
+		}).done(res =>{
+			alert(JSON.stringify(data));
+			location.href="/";
+		}).fail(error =>{
+			alert(JSON.stringify(error));
+		});
+		
+	}
+	
+}
+
+auth.init();

@@ -1,0 +1,21 @@
+auth = {
+	init: function() {
+		$("#btnUserUpdate").on("click", () => {
+			this.btnUserUpdate();
+		})
+	},
+	
+	
+	btnUserUpdate: function() {
+		
+		let data = {
+			password: $("#password").val(),
+			name: $("#name").val(),
+			phone: $("#phone").val()
+		}
+		
+		console.log(JSON.stringify(data));
+		
+	}
+
+}

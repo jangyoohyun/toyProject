@@ -63,21 +63,23 @@
 			</li>
 
 			<form id="commentUpdateDisplay-${comment.id}" style="display: none;">
-			<input type="hidden" id="commentId" value="${comment.id}" />
+				<input type="hidden" id="commentFormId" value="${comment.id}" /> <input
+					type="hidden" id="boardFormId" value="${board.id}" />
 				<div class="card-body">
-					<textarea id="commentUpdateContent" name="commentUpdateContent"
+					<textarea id="commentUpdateContent-${comment.id}" name="commentUpdateContent"
 						class="form-control" style="resize: none;" rows="1"
-						required="required">${comment.commentContent}</textarea>
+						required="required"></textarea>
 				</div>
 				<div class="card-footer">
 					<button type="button" id="btn-commentUpdate-${comment.id}"
 						class="btn btn-primary">수정</button>
 				</div>
 			</form>
+
 		</c:forEach>
-		
+
 	</ul>
-	
+
 </div>
 
 <script src="/js/board.js"></script>

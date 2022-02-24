@@ -10,9 +10,11 @@ import com.study.toyproject.domain.user.User;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
 @Getter
+@Setter
 public class PrincipalDetails implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
@@ -59,6 +61,7 @@ public class PrincipalDetails implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
+
 	
 
 }

@@ -58,4 +58,9 @@ public class AuthController {
 		
 	}
 	
+	@GetMapping("/auth/userUpdate")
+	public String userUpdate() {
+		return "/auth/userUpdate";
+	}
+	
 }

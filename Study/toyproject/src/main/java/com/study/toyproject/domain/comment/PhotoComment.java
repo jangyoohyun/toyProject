@@ -35,11 +35,12 @@ public class PhotoComment extends BaseTimeEntity{
 	@Column(length = 100, nullable = false)
 	private String photoCommentContent;
 	
-	@JsonIgnoreProperties({"photos"})
+	@JsonIgnoreProperties({"photos", "boards"}) // "boardComments", "photoComments", "boards"
 	@JoinColumn(name = "userId")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	
+	@JsonIgnoreProperties({"photoComments"})
 	@JoinColumn(name = "photoId")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Photo photo;

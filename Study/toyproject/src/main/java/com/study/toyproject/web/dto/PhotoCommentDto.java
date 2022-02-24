@@ -14,6 +14,6 @@ public class PhotoCommentDto {
 	private int photoId;
 	
 	@NotBlank
-	private String PhotoCommentContent;
+	private String photoCommentContent;
 
 }

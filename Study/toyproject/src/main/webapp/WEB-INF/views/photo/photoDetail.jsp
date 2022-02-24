@@ -34,14 +34,14 @@
 <div class="card mb-4">
 	<form>
 		<input type="hidden" id="userId" value="${principal.user.id}" /> <input
-			type="hidden" id="boardId" value="${board.id}" />
+			type="hidden" id="photoId" value="${photo.id}" />
 		<div class="card-body">
-			<textarea id="commentContent" name="commentContent"
+			<textarea id="photoCommentContent" name="photoCommentContent"
 				class="form-control" style="resize: none;" rows="1"
 				required="required"></textarea>
 		</div>
 		<div class="card-footer">
-			<button type="button" id="btn-commentSave" class="btn btn-primary">등록</button>
+			<button type="button" id="btn-photoCommentSave" class="btn btn-primary">등록</button>
 		</div>
 	</form>
 </div>
@@ -50,19 +50,19 @@
 <div class="card mb-4">
 	<div class="card-header">댓글 리스트</div>
 	<ul id="reply-box" class="list-group">
-		<c:forEach var="comment" items="${board.boardComments}">
+		<c:forEach var="comment" items="${photo.photoComments}">
 
 			<li id="reply-${comment.id}"
 				class="list-group-item d-flex justify-content-between">
-				<div>${comment.commentContent}</div>
+				<div>${comment.photoCommentContent}</div>
 				<div class="d-flex">
 					<div class="font-italic">작성자: ${comment.user.username} &nbsp;</div>
 					<button id="commentUpdateBtn"
-						onclick="boardList.commentUpdate(${board.id}, ${comment.id})"
+						onclick="photoList.commentUpdate(${photo.id}, ${comment.id})"
 						class="btn btn-primary badge">수정</button>
 					&nbsp;
 					<button
-						onclick="boardList.commentDelete(${board.id}, ${comment.id})"
+						onclick="photoList.commentDelete(${photo.id}, ${comment.id})"
 						class="btn btn-danger badge">삭제</button>
 				</div>
 			</li>
@@ -70,20 +70,21 @@
 			<form id="commentUpdateDisplay-${comment.id}" style="display: none;">
 			<input type="hidden" id="commentId" value="${comment.id}" />
 				<div class="card-body">
-					<textarea id="commentUpdateContent" name="commentUpdateContent"
+					<textarea id="commentUpdateContent-${comment.id}" 
 						class="form-control" style="resize: none;" rows="1"
-						required="required">${comment.commentContent}</textarea>
+						required="required"></textarea>
 				</div>
 				<div class="card-footer">
-					<button type="button" id="btn-commentUpdate-${comment.id}"
+					<button type="button" id="btn-photoCommentUpdate-${comment.id}"
 						class="btn btn-primary">수정</button>
 				</div>
 			</form>
+			
 		</c:forEach>
 		
 	</ul>
 	
-</div>
+</div> 
 
 <script src="/js/photo.js"></script>
 
