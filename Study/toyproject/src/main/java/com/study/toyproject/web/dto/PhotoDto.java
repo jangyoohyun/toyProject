@@ -1,5 +1,7 @@
 package com.study.toyproject.web.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.study.toyproject.domain.photo.Photo;
@@ -12,8 +14,10 @@ import lombok.Setter;
 @Setter
 public class PhotoDto {
 	
+	@NotBlank
 	private String title;
 	
+	@NotBlank
 	private String content;
 	
 	private MultipartFile file;

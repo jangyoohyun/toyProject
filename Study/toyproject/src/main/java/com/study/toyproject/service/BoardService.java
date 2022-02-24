@@ -10,6 +10,7 @@ import com.study.toyproject.domain.board.Board;
 import com.study.toyproject.domain.board.BoardRepository;
 import com.study.toyproject.domain.comment.BoardComment;
 import com.study.toyproject.domain.comment.BoardCommentRepository;
+import com.study.toyproject.handler.ex.CustomException;
 import com.study.toyproject.web.dto.BoardCommentDto;
 import com.study.toyproject.web.dto.BoardDto;
 
@@ -42,14 +43,14 @@ public class BoardService {
 		
 		boardRepository.findById(id).get();
 
-		return boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("글 조회의 아이디를 찾을 수 없습니다.");});
+		return boardRepository.findById(id).orElseThrow(()->{return new CustomException("글 조회의 아이디를 찾을 수 없습니다.");});
 		
 	}
 
 	@Transactional
 	public void postUpdate(int id, BoardDto boardDto) {
 		
-		Board updateBoard = boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("글 수정의 아이디를 찾을 수 없습니다.");});
+		Board updateBoard = boardRepository.findById(id).orElseThrow(()->{return new CustomException("글 수정의 아이디를 찾을 수 없습니다.");});
 		updateBoard.setTitle(boardDto.getTitle());
 		updateBoard.setContent(boardDto.getContent());
 				
@@ -79,7 +80,7 @@ public class BoardService {
 	@Transactional
 	public void replyUpdate(int commentId, BoardCommentDto boardCommentDto) {
 		
-		BoardComment commentUpdate = boardCommentRepository.findById(commentId).orElseThrow(() -> {return new IllegalArgumentException("댓글 수정의 아이디를 찾을 수 업습니다.");});
+		BoardComment commentUpdate = boardCommentRepository.findById(commentId).orElseThrow(() -> {return new CustomException("댓글 수정의 아이디를 찾을 수 업습니다.");});
 		commentUpdate.setCommentContent(boardCommentDto.getCommentContent());
 		
 	}

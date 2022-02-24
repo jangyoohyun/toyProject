@@ -81,12 +81,5 @@ public class PhotoController {
 		return "redirect:/photo";
 	}
 	
-	
-	/*
-	 * @PutMapping("/photo/photoUpdate/{id}") public String update(@PathVariable int
-	 * id, @RequestBody PhotoDto photoDto, @AuthenticationPrincipal PrincipalDetails
-	 * principalDetails){ photoService.사진수정(id, photoDto, principalDetails); return
-	 * "redirect:/photo/"+id; }
-	 */
 
 }

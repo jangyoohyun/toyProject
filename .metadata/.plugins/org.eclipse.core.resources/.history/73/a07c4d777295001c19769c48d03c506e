@@ -1,0 +1,5 @@
+package com.study.toyproject.handler.aop;
+
+public class ValidationAdvice {
+
+}

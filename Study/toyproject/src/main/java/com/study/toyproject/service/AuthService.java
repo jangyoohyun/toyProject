@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.study.toyproject.domain.user.User;
 import com.study.toyproject.domain.user.UserRepository;
-import com.study.toyproject.web.dto.UserUpdateDto;
+import com.study.toyproject.handler.ex.CustomException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +34,7 @@ public class AuthService {
 	@Transactional
 	public User userUpdate(int userId, User user) {
 	
-		User userUpdate = userRepository.findById(userId).orElseThrow(() -> {return new IllegalArgumentException("회원 ID를 찾을 수 없습니다.");});
+		User userUpdate = userRepository.findById(userId).orElseThrow(() -> {return new CustomException("회원 ID를 찾을 수 없습니다.");});
 		
 		String rawPassword = user.getPassword();
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);

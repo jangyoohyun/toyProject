@@ -52,13 +52,15 @@
 				<div>${comment.commentContent}</div>
 				<div class="d-flex">
 					<div class="font-italic">작성자: ${comment.user.username} &nbsp;</div>
-					<button id="commentUpdateBtn"
-						onclick="boardList.commentUpdate(${board.id}, ${comment.id})"
-						class="btn btn-primary badge">수정</button>
+					<c:if test="${board.user.username == principal.username}">
+						<button id="commentUpdateBtn"
+							onclick="boardList.commentUpdate(${board.id}, ${comment.id})"
+							class="btn btn-primary badge">수정</button>
 					&nbsp;
 					<button
-						onclick="boardList.commentDelete(${board.id}, ${comment.id})"
-						class="btn btn-danger badge">삭제</button>
+							onclick="boardList.commentDelete(${board.id}, ${comment.id})"
+							class="btn btn-danger badge">삭제</button>
+					</c:if>
 				</div>
 			</li>
 
@@ -66,9 +68,9 @@
 				<input type="hidden" id="commentFormId" value="${comment.id}" /> <input
 					type="hidden" id="boardFormId" value="${board.id}" />
 				<div class="card-body">
-					<textarea id="commentUpdateContent-${comment.id}" name="commentUpdateContent"
-						class="form-control" style="resize: none;" rows="1"
-						required="required"></textarea>
+					<textarea id="commentUpdateContent-${comment.id}"
+						name="commentUpdateContent" class="form-control"
+						style="resize: none;" rows="1" required="required"></textarea>
 				</div>
 				<div class="card-footer">
 					<button type="button" id="btn-commentUpdate-${comment.id}"

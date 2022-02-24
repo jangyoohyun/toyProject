@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 public class BoardCommentDto {
 	
+	@NotBlank
 	private int userId;
 	
+	@NotBlank
 	private int boardId;
 	
 	@NotBlank

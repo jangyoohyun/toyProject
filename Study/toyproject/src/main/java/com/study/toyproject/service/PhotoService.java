@@ -18,7 +18,7 @@ import com.study.toyproject.domain.comment.PhotoComment;
 import com.study.toyproject.domain.comment.PhotoCommentRepository;
 import com.study.toyproject.domain.photo.Photo;
 import com.study.toyproject.domain.photo.PhotoRepository;
-import com.study.toyproject.web.dto.BoardCommentDto;
+import com.study.toyproject.handler.ex.CustomException;
 import com.study.toyproject.web.dto.PhotoCommentDto;
 import com.study.toyproject.web.dto.PhotoDto;
 
@@ -75,7 +75,7 @@ public class PhotoService {
 		}
 
 		Photo photoUpdate = photoRepository.findById(id).orElseThrow(() -> {
-			throw new IllegalArgumentException("글 수정의 아이디를 찾을 수 없습니다.");
+			throw new CustomException("글 수정의 아이디를 찾을 수 없습니다.");
 		});
 
 		photoUpdate.setPostImageUrl(photoFileName);
@@ -92,7 +92,7 @@ public class PhotoService {
 		photoRepository.findById(id).get();
 
 		return photoRepository.findById(id).orElseThrow(() -> {
-			return new IllegalArgumentException("글 조회의 아이디를 찾을 수 없습니다.");
+			return new CustomException("글 조회의 아이디를 찾을 수 없습니다.");
 		});
 
 	}
@@ -120,7 +120,7 @@ public class PhotoService {
 	@Transactional
 	public void replyUpdate(int commentId, PhotoCommentDto photoCommentDto) {
 		
-		PhotoComment commentUpdate = photoCommentRepository.findById(commentId).orElseThrow(() -> {return new IllegalArgumentException("댓글 수정의 아이디를 찾을 수 업습니다.");});
+		PhotoComment commentUpdate = photoCommentRepository.findById(commentId).orElseThrow(() -> {return new CustomException("댓글 수정의 아이디를 찾을 수 업습니다.");});
 		commentUpdate.setPhotoCommentContent(photoCommentDto.getPhotoCommentContent());
 		
 	}

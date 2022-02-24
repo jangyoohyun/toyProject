@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 public class PhotoCommentDto {
 	
+	@NotBlank
 	private int userId;
 	
+	@NotBlank
 	private int photoId;
 	
 	@NotBlank

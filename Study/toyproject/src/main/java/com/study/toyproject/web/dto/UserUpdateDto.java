@@ -15,7 +15,9 @@ public class UserUpdateDto {
 	@NotBlank
 	private String password;
 	
+	@NotBlank
 	private String name;
+	
 	private String phone;
 	
 	public User toEntity() {

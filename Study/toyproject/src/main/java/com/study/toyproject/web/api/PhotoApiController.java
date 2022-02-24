@@ -1,6 +1,8 @@
 package com.study.toyproject.web.api;
 
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.study.toyproject.config.auth.PrincipalDetails;
 import com.study.toyproject.service.PhotoService;
-import com.study.toyproject.web.dto.BoardCommentDto;
 import com.study.toyproject.web.dto.CMRespDto;
 import com.study.toyproject.web.dto.PhotoCommentDto;
 
