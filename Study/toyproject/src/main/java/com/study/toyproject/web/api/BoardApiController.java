@@ -2,6 +2,8 @@ package com.study.toyproject.web.api;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,14 +28,14 @@ public class BoardApiController {
 	private final BoardService boardService;
 	
 	@PostMapping("/api/board/write")
-	public CMRespDto<?> write(@RequestBody BoardDto boardDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public CMRespDto<?> write(@Valid @RequestBody BoardDto boardDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		boardService.postWrite(boardDto, principalDetails);
 		return new CMRespDto<>(1, "글 작성 성공", null);
 		
 	}
 
 	@PutMapping("/api/board/update/{id}")
-	public CMRespDto<?> update(@PathVariable int id, @RequestBody BoardDto boardDto){
+	public CMRespDto<?> update(@PathVariable int id, @Valid @RequestBody BoardDto boardDto){
 		boardService.postUpdate(id, boardDto);
 		return new CMRespDto<>(1, "글 업데이트 성공", null);
 	}
@@ -45,7 +47,7 @@ public class BoardApiController {
 	}
 	
 	@PostMapping("/api/board/comment/{id}")
-	public CMRespDto<?> commentWrite(@RequestBody BoardCommentDto boardCommentDto) {
+	public CMRespDto<?> commentWrite(@Valid @RequestBody BoardCommentDto boardCommentDto) {
 		boardService.replyWrite(boardCommentDto);
 		return new CMRespDto<>(1, "댓글 작성", null);
 	}
@@ -59,7 +61,7 @@ public class BoardApiController {
 	}
 	
 	@PutMapping("/api/board/{boardId}/update/{commentId}")
-	public CMRespDto<?> commentUpdate(@PathVariable int commentId, @RequestBody BoardCommentDto boardCommentDto) {
+	public CMRespDto<?> commentUpdate(@PathVariable int commentId, @Valid @RequestBody BoardCommentDto boardCommentDto) {
 		
 		boardService.replyUpdate(commentId, boardCommentDto);
 

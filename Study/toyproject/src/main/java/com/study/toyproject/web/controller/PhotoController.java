@@ -10,14 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.study.toyproject.config.auth.PrincipalDetails;
 import com.study.toyproject.domain.photo.Photo;
 import com.study.toyproject.service.PhotoService;
-import com.study.toyproject.web.dto.CMRespDto;
 import com.study.toyproject.web.dto.PhotoDto;
 
 import lombok.RequiredArgsConstructor;

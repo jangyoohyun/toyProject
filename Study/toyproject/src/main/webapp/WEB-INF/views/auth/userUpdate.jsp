@@ -14,6 +14,7 @@
 
 
 		<form id="userUpdate">
+		
 			<input type="hidden" id="userId" value="${principal.user.id}" />
 
 			<div class="form-group mt-3">

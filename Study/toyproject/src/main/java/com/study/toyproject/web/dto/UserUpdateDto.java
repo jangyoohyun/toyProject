@@ -2,6 +2,7 @@ package com.study.toyproject.web.dto;
 
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.study.toyproject.domain.user.User;
 
@@ -12,10 +13,11 @@ import lombok.Setter;
 @Setter
 public class UserUpdateDto {
 	
-	@NotBlank
+	@Size(min = 4, max = 15)
+	@NotBlank(message = "비밀번호를 입력해주세요!")
 	private String password;
 	
-	@NotBlank
+	@NotBlank(message = "이름을 입력해주세요!")
 	private String name;
 	
 	private String phone;

@@ -1,5 +1,0 @@
-function btn-userUpdate(userId) {
-	
-	let data = $("userUpdate").
-	
-}

@@ -56,7 +56,7 @@
 				<div>${comment.photoCommentContent}</div>
 				<div class="d-flex">
 					<div class="font-italic">작성자: ${comment.user.username} &nbsp;</div>
-					<c:if test="${photo.user.username == principal.username}">
+					<c:if test="${comment.user.username == principal.username}">
 						<button id="commentUpdateBtn"
 							onclick="photoList.commentUpdate(${photo.id}, ${comment.id})"
 							class="btn btn-primary badge">수정</button>

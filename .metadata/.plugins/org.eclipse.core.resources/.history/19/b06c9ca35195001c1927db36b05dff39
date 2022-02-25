@@ -1,5 +1,0 @@
-auth = {
-	$("#btnUserUpdate").on("click", () => {
-		this.btnUserUpdate();
-	})
-}

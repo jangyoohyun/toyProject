@@ -1,6 +1,8 @@
 package com.study.toyproject.web.api;
 
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +34,7 @@ public class PhotoApiController {
 	}
 	
 	@PostMapping("/api/photo/comment/{id}")
-	public CMRespDto<?> commentWrite(@RequestBody PhotoCommentDto photoCommentDto) {
+	public CMRespDto<?> commentWrite(@Valid @RequestBody PhotoCommentDto photoCommentDto) {
 		photoService.replyWrite(photoCommentDto);
 		return new CMRespDto<>(1, "댓글 작성", null);
 	}
@@ -46,7 +48,7 @@ public class PhotoApiController {
 	}
 	
 	@PutMapping("/api/photo/{photoId}/update/{commentId}")
-	public CMRespDto<?> commentUpdate(@PathVariable int commentId, @RequestBody PhotoCommentDto photoCommentDto) {
+	public CMRespDto<?> commentUpdate(@PathVariable int commentId, @Valid @RequestBody PhotoCommentDto photoCommentDto) {
 		
 		photoService.replyUpdate(commentId, photoCommentDto);
 

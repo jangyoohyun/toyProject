@@ -1,6 +1,7 @@
 package com.study.toyproject.web.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,13 +10,13 @@ import lombok.Setter;
 @Setter
 public class PhotoCommentDto {
 	
-	@NotBlank
-	private int userId;
+	@NotNull
+	private Integer userId;
 	
-	@NotBlank
-	private int photoId;
+	@NotNull
+	private Integer photoId;
 	
-	@NotBlank
+	@NotBlank(message = "댓글을 입력해주세요!")
 	private String photoCommentContent;
 
 }
