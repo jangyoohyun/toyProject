@@ -3,7 +3,7 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-<div class="jumbotron mt-4 bg-light border" >
+<div class="jumbotron mt-4 border" style="background-color: #faf2db">
 	<div class="container" style="width: 80%">
 		<h1 class="text-center">다이어리 수정</h1>
 		
@@ -26,9 +26,9 @@
 		</form>
 		
 		<button id="btn-update" form="write_form"
-			class="btn btn-secondary float-right">수정하기</button>
-		<a href="<c:url value="/board"/>"><button
-				class="btn float-end btn-info">목록으로</button></a>
+			class="btn border-primary float-right">수정하기</button>
+		<a href="<c:url value="/board/${board.id}"/>"><button
+				class="btn float-end border-danger">돌아가기</button></a>
 	</div>
 </div>
 

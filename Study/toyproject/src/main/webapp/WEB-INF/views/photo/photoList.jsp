@@ -26,7 +26,7 @@
 
 <div class="text-right float-right">
 	<a href="<c:url value="/photo/photoForm"/>"><button
-			class="btn btn-secondary">글쓰기</button></a>
+			class="btn border-secondary">글쓰기</button></a>
 </div>
 
 <nav aria-label="Page navigation example">

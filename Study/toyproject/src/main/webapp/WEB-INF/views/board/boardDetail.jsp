@@ -3,7 +3,7 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-<div class="jumbotron mt-4" style="background-color: #E2E2E2">
+<div class="jumbotron mt-4" style="background-color: #faf2db">
 	<div class="container" style="width: 80%">
 		<h1 class="text-center">다이어리 읽기</h1>
 		<br> <input type="hidden" id="id" value="${board.id}" />
@@ -16,11 +16,13 @@
 				<p class="card-text">${board.content}</p>
 			</div>
 		</div>
-		<br> <a href="/board"><button class="btn btn-secondary">목록으로</button></a>
+		<br> <a href="/board"><button class="btn border-secondary">목록으로</button></a>
 
 		<c:if test="${board.user.username == principal.username}">
-			<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
-			<button id="btn-deleteById" class="btn btn-danger">삭제</button>
+			<button id="btn-deleteById" class="btn border-danger"
+				style="color: #DB4455; float: right;">삭제</button>
+			<a href="/board/${board.id}/updateForm" style="float: right;"
+				class="btn border-primary mr-1">수정</a>
 		</c:if>
 
 	</div>
@@ -36,7 +38,7 @@
 				required="required"></textarea>
 		</div>
 		<div class="card-footer">
-			<button type="button" id="btn-commentSave" class="btn btn-primary">등록</button>
+			<button type="button" id="btn-commentSave" class="btn border-info">등록</button>
 		</div>
 	</form>
 </div>
@@ -55,11 +57,11 @@
 					<c:if test="${comment.user.username == principal.username}">
 						<button id="commentUpdateBtn"
 							onclick="boardList.commentUpdate(${board.id}, ${comment.id})"
-							class="btn btn-primary badge">수정</button>
+							class="btn border-primary badge">수정</button>
 					&nbsp;
 					<button
 							onclick="boardList.commentDelete(${board.id}, ${comment.id})"
-							class="btn btn-danger badge">삭제</button>
+							class="btn border-danger badge">삭제</button>
 					</c:if>
 				</div>
 			</li>

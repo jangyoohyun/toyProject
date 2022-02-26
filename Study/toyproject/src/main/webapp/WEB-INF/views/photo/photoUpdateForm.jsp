@@ -3,7 +3,7 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-<div class="jumbotron mt-4 bg-light border">
+<div class="jumbotron mt-4 border" style="background-color: #faf2db">
 	<div class="container" style="width: 80%">
 	
 		<h1 class="text-center">사진첩 수정</h1>
@@ -37,9 +37,9 @@
 		</form>
 		
 		<button type="submit" form="photo_write"
-			class="btn btn-secondary float-right">수정하기</button>
-		<a href="<c:url value="/photo"/>"><button
-				class="btn float-end" style="background-color: #d3d3d3">목록으로</button></a>
+			class="btn border-primary float-right">수정하기</button>
+		<a href="<c:url value="/photo/${photo.id}"/>"><button
+				class="btn border-danger">돌아가기</button></a>
 	</div>
 </div>
 

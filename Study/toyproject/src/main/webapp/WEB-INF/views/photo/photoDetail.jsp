@@ -3,7 +3,7 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-<div class="jumbotron mt-4" style="background-color: #E2E2E2">
+<div class="jumbotron mt-4" style="background-color: #faf2db">
 	<div class="container" style="width: 80%">
 		<h1 class="text-center">다이어리 읽기</h1>
 		<br> <input type="hidden" id="id" value="${photo.id}" />
@@ -18,11 +18,11 @@
 				<p class="card-text">${photo.content}</p>
 			</div>
 		</div>
-		<br> <a href="/photo"><button class="btn btn-secondary">목록으로</button></a>
+		<br> <a href="/photo"><button class="btn border-secondary">목록으로</button></a>
 
 		<c:if test="${photo.user.username == principal.username}">
-			<a href="/photo/${photo.id}/photoUpdateForm" class="btn btn-warning">수정</a>
-			<button id="btn-deleteById" class="btn btn-danger">삭제</button>
+			<button id="btn-deleteById" style="float: right;" class="btn border-danger">삭제</button>
+			<a href="/photo/${photo.id}/photoUpdateForm" style="float: right;" class="btn border-primary mr-1">수정</a>
 		</c:if>
 
 	</div>
@@ -40,14 +40,14 @@
 		</div>
 		<div class="card-footer">
 			<button type="button" id="btn-photoCommentSave"
-				class="btn btn-primary">등록</button>
+				class="btn border-dark">등록</button>
 		</div>
 	</form>
 </div>
 
 
 <div class="card mb-4">
-	<div class="card-header">댓글 리스트</div>
+	<div class="card-header" style="background-color: #faf2db">댓글 리스트</div>
 	<ul id="reply-box" class="list-group">
 		<c:forEach var="comment" items="${photo.photoComments}">
 
@@ -59,11 +59,11 @@
 					<c:if test="${comment.user.username == principal.username}">
 						<button id="commentUpdateBtn"
 							onclick="photoList.commentUpdate(${photo.id}, ${comment.id})"
-							class="btn btn-primary badge">수정</button>
+							class="btn border-primary badge">수정</button>
 					&nbsp;
 					<button
 							onclick="photoList.commentDelete(${photo.id}, ${comment.id})"
-							class="btn btn-danger badge">삭제</button>
+							class="btn border-danger badge">삭제</button>
 					</c:if>
 				</div>
 			</li>

@@ -27,9 +27,9 @@
 <body>
 	<div class="container mt-5 w-75">
 		<nav class="navbar navbar-expand-lg navbar-light rounded"
-			style="background-color: #E2E2E2">
+			style="background-color: #958D85">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="<c:url value="/"/>">나만의 공간</a>
+				<a class="navbar-brand text-white" href="<c:url value="/"/>">HOME</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false"
@@ -38,20 +38,20 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item "><a class="nav-link text-white"
 							href="<c:url value="/board?page=0"/>">다이어리</a></li>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link text-white"
 							href="<c:url value="/photo"/>">사진첩</a></li>
 						<c:choose>
 							<c:when test="${principal.username == null}">
-								<li class="nav-item"><a class="nav-link"
+								<li class="nav-item"><a class="nav-link text-white"
 									href="<c:url value="/auth/signInForm"/>">회원가입/로그인</a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="nav-item"><a class="nav-link"
+								<li class="nav-item"><a class="nav-link text-white"
 									onclick="return confirm('로그아웃 하시겠습니까?');"
 									href="<c:url value="/logout"/>">로그아웃</a></li>
-								<li class="nav-item"><a class="nav-link"
+								<li class="nav-item"><a class="nav-link text-white"
 									href="<c:url value="/auth/userUpdate"/>">회원정보수정</a></li>
 							</c:otherwise>
 						</c:choose>
