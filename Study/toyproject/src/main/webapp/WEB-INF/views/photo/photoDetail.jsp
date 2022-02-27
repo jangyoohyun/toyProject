@@ -5,7 +5,7 @@
 
 <div class="jumbotron mt-4" style="background-color: #faf2db">
 	<div class="container" style="width: 80%">
-		<h1 class="text-center">다이어리 읽기</h1>
+		<h1 class="text-center">사진첩 읽기</h1>
 		<br> <input type="hidden" id="id" value="${photo.id}" />
 
 		<div class="card">
@@ -40,7 +40,7 @@
 		</div>
 		<div class="card-footer">
 			<button type="button" id="btn-photoCommentSave"
-				class="btn border-dark">등록</button>
+				class="btn border-info">등록</button>
 		</div>
 	</form>
 </div>

@@ -92,6 +92,7 @@ let boardList = {
 		let commentSaveConfirm = confirm("댓글을 등록하시겠습니까?");
 
 		if (commentSaveConfirm == true) {
+
 			$.ajax({
 				type: "POST",
 				url: `/api/board/comment/${data.boardId}`,
@@ -161,9 +162,6 @@ let boardList = {
 				} else {
 					return false;
 				}
-
-
-
 			});
 
 		} else {

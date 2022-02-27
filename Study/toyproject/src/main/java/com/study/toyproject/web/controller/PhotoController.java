@@ -26,14 +26,23 @@ public class PhotoController {
 	private final PhotoService photoService;
 	
 	@GetMapping("/photo")
-	public String photoList(Model model, @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+	public String photoList(Model model, @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+			String keyword) {
 		
-		Page<Photo> photo = photoService.photoList(pageable);
+		Page<Photo> photo = null; 
+				
+		if(keyword == null) {
+			photo = photoService.photoList(pageable);
+		} else {
+			photo = photoService.photoSearch(keyword, pageable);
+		}
+				
 		
 		int nowPage = photo.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(1, nowPage - 4);
 		int endpage = Math.min(nowPage + 5, photo.getTotalPages());
 		
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("photo", photo);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);

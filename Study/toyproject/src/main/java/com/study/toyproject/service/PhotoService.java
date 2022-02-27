@@ -39,6 +39,10 @@ public class PhotoService {
 
 		UUID uuid = UUID.randomUUID();
 		String photoFileName = uuid + "_" + photoDto.getFile().getOriginalFilename();
+		
+		if(photoDto.getFile() == null) {
+			throw new CustomException("이미지를 등록해주세요.");
+		}
 
 		Path photoFilePath = Paths.get(uploadFolder + photoFileName);
 
@@ -57,6 +61,13 @@ public class PhotoService {
 	public Page<Photo> photoList(Pageable pageable) {
 
 		return photoRepository.findAll(pageable);
+
+	}
+	
+	@Transactional
+	public Page<Photo> photoSearch(String keyword, Pageable pageable) {
+
+		return photoRepository.findByTitleContaining(keyword, pageable);
 
 	}
 
@@ -124,6 +135,7 @@ public class PhotoService {
 		commentUpdate.setPhotoCommentContent(photoCommentDto.getPhotoCommentContent());
 		
 	}
+
 
 
 }

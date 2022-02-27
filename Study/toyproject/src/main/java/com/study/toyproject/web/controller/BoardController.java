@@ -32,20 +32,24 @@ public class BoardController {
 	
 	@GetMapping("/board")
 	public String boardList(Model model, @PageableDefault(sort="id", direction = Sort.Direction.DESC) Pageable pageable,
-			String searchKeyword) {
+			String keyword) {
+		
+		System.out.println("여기"+keyword);
 		
 		Page<Board> list = null;
 		
-		if(searchKeyword == null ) {
+		if(keyword == null) {
 			list = boardService.postList(pageable);
 		} else {
-			list = boardService.searchList(searchKeyword, pageable);
+			list = boardService.searchList(keyword, pageable);
 		}
+	
 		
 		int nowPage = list.getPageable().getPageNumber()+1;
 		int startPage = Math.max(1, nowPage - 4);
 		int endPage = Math.min(nowPage + 5, list.getTotalPages());
 		
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("board", list);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
