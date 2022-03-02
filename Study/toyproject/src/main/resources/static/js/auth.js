@@ -78,7 +78,8 @@ auth = {
 			username: $("#username").val(),
 			password: $("#password").val(),
 			name: $("#name").val(),
-			email: $("#email").val()
+			email: $("#email").val(),
+			phone: $("#phone").val()
 		}
 
 		let userConfirm = confirm("회원가입을 하시겠습니까?");
@@ -92,6 +93,7 @@ auth = {
 			}).done(res => {
 				location.href = "/auth/signInForm";
 			}).fail(error => {
+				location.href = "/auth/signUpForm";
 				alert(JSON.stringify(error));
 			});
 		} else {

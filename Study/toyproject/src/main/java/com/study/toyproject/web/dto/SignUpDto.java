@@ -22,12 +22,16 @@ public class SignUpDto {
 	private String password;
 	
 	@Size(min = 2, max = 6, message = "이름은 2~6자 이내로 입력해주세요.")
-	@NotBlank(message = "이름은 2~10자 이내로 입력해주세요.")
+	@NotBlank(message = "이름은 2~6자 이내로 입력해주세요.")
 	private String name;
 	
 	@NotBlank(message = "이메일을 입력해주세요.")
-	@Pattern(regexp = "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i")
+	@Pattern(regexp = "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i", message = "이메일 형식에 맞게 입력해주세요.")
 	private String email;
+	
+	@NotBlank(message = "휴대폰 번호를 입력해주세요.")
+	@Pattern(regexp = "/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/", message = "휴대폰 번호 형식에 맞게 입력해주세요.")
+	private String phone;
 	
 	public User toEntity() {
 		return User.builder()

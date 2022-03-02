@@ -60,6 +60,7 @@ public class AuthService {
 	
 		return userRepository.existsByUsername(username);
 	}
+	
 
 	public Map<String, String> validateHandler(Errors errors) {
 		Map<String, String> validatorResult = new HashMap<>();

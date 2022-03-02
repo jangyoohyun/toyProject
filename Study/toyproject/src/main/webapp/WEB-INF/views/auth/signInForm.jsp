@@ -22,6 +22,7 @@
 				<c:if test="${!empty error}">
 					<span style="color: red;">${exception}</span>
 				</c:if>
+				
 				<div class="btn-toolbar justify-content-end mt-2" role="toolbar" aria-label="Toolbar with button groups">
 				  <div class="btn-group">
 				    <button type="submit" class="btn border-secondary" id="loginBtn">로그인</button>
