@@ -1,8 +1,13 @@
 package com.study.toyproject.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
 import com.study.toyproject.domain.user.User;
 import com.study.toyproject.domain.user.UserRepository;
@@ -44,6 +49,7 @@ public class AuthService {
 		userUpdate.setPassword(encPassword);
 		userUpdate.setName(user.getName());
 		userUpdate.setPhone(user.getPhone());
+		userUpdate.setEmail(user.getEmail());
 		
 		return userUpdate;
 
@@ -53,6 +59,17 @@ public class AuthService {
 	public Boolean checkUsername(String username) {
 	
 		return userRepository.existsByUsername(username);
+	}
+
+	public Map<String, String> validateHandler(Errors errors) {
+		Map<String, String> validatorResult = new HashMap<>();
+		
+		for(FieldError error : errors.getFieldErrors()) {
+			String validKeyName = String.format("valid_%s", error.getField());
+			validatorResult.put(validKeyName, error.getDefaultMessage());
+		}
+		
+		return validatorResult;
 	}
 	
 }

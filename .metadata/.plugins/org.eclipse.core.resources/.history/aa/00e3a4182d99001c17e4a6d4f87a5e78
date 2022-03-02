@@ -1,0 +1,5 @@
+package com.study.toyproject.service;
+
+public class EmailSenderService {
+
+}

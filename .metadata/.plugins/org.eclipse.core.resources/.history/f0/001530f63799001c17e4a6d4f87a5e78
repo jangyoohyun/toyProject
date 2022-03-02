@@ -1,0 +1,48 @@
+package com.study.toyproject.domain.ConfirmationToken;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.study.toyproject.util.BaseTimeEntity;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+public class ConfirmationToken extends BaseTimeEntity {
+	
+	private static final long EMAIL_TOKEN_EXPIRATION_TIME_VALUE = 5L;
+	
+	@Id
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(length = 36)
+	private String id;
+	
+	private LocalDateTime expirationDate;
+	
+	private boolean expired;
+	
+	private String userId;
+
+	public static ConfirmationToken createEmailConfirmationToken(String userId) {
+		ConfirmationToken confirmationToken = new ConfirmationToken();
+		confirmationToken.expirationDate = LocalDateTime.now().plusMinutes(EMAIL_TOKEN_EXPIRATION_TIME_VALUE);
+		confirmationToken.userId = userId;
+		confirmationToken.expired = false;
+		return confirmationToken;
+	}
+	
+	public void useToken() {
+		expired = true;
+	}
+
+}

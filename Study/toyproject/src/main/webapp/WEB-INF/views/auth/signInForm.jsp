@@ -8,6 +8,8 @@
 		<h1 class="text-center">로그인</h1>
 		
 		<form class="px-4 py-3" action="/auth/signIn" method="post">
+	
+				
 				<div class="form-group">
 					<label for="userId" class="form-label">아이디</label>
 					<input type="text" class="form-control" name="username" placeholder="아이디">
@@ -16,6 +18,10 @@
 					<label class="form-label">비밀번호</label>
 					<input type="password" class="form-control" name="password" placeholder="비밀번호">
 				</div>
+				
+				<c:if test="${!empty error}">
+					<span style="color: red;">${exception}</span>
+				</c:if>
 				<div class="btn-toolbar justify-content-end mt-2" role="toolbar" aria-label="Toolbar with button groups">
 				  <div class="btn-group">
 				    <button type="submit" class="btn border-secondary" id="loginBtn">로그인</button>

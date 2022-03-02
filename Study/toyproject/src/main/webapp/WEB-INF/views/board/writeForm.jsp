@@ -3,12 +3,11 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-<div class="jumbotron mt-4" style="background-color: #E2E2E2">
+<div class="jumbotron mt-4" style="background-color: #faf2db">
 	<div class="container" style="width: 80%">
 		<h1 class="text-center">다이어리 쓰기</h1>
 		<br>
-		<form id="write_form"
-			onsubmit="return confirm('글을 등록하시겠습니까?');">
+		<form>
 			<div class="form-group">
 				<label class="form-label">제목</label> 
 				<input type="text" class="form-control" id="title" name="title" placeholder="제목" required="required"/>
@@ -21,7 +20,7 @@
 			</div>
 		</form>
 		
-		<button id="btn-save" form="write_form"
+		<button id="btn-save"
 			class="btn btn-secondary float-right">등록하기</button>
 		<a href="<c:url value="/board"/>"><button
 				class="btn float-end btn-info">목록으로</button></a>

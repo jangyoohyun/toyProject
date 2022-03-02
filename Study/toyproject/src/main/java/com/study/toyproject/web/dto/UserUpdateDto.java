@@ -24,12 +24,16 @@ public class UserUpdateDto {
 	@Pattern(regexp="/^[가-힣]{2,6}$/", message = "한글은 2~6자 이내로 입력해주세요.")
 	private String name;
 	
+	@NotBlank
+	private String email;
+	
 	private String phone;
 	
 	public User toEntity() {
 		return User.builder()
 				.password(password)
 				.name(name)
+				.email(email)
 				.phone(phone)
 				.build();
 	}

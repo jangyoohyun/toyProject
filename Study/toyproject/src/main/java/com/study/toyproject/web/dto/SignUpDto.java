@@ -25,11 +25,16 @@ public class SignUpDto {
 	@NotBlank(message = "이름은 2~10자 이내로 입력해주세요.")
 	private String name;
 	
+	@NotBlank(message = "이메일을 입력해주세요.")
+	@Pattern(regexp = "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i")
+	private String email;
+	
 	public User toEntity() {
 		return User.builder()
 				.username(username)
 				.password(password)
 				.name(name)
+				.email(email)
 				.build();
 	}
 	

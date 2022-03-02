@@ -1,0 +1,15 @@
+package com.study.toyproject.handler.ex;
+
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+public class SignInException extends UsernameNotFoundException {
+
+	private static final long serialVersionUID = 1L;
+
+	public SginInException(String message) {
+		super(message);
+	}
+	
+	
+
+}

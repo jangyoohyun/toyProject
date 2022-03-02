@@ -25,16 +25,24 @@ let boardList = {
 			content: $("#content").val()
 		};
 
-		$.ajax({
-			type: "POST",
-			url: "/api/board/write",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset-utf-8",
-		}).done(res => {
-			location.href = "/board";
-		}).fail(error => {
-			alert(JSON.stringify(error));
-		});
+		let boardWriteConfirm = confirm("글을 등록하시겠습니까?");
+
+		if (boardWriteConfirm == true) {
+			$.ajax({
+				type: "POST",
+				url: "/api/board/write",
+				data: JSON.stringify(data),
+				contentType: "application/json; charset-utf-8",
+			}).done(res => {
+				location.href = "/board";
+			}).fail(error => {
+				alert(JSON.stringify(error));
+			});
+		} else {
+			return false;
+		}
+
+
 	},
 
 	update: function() {

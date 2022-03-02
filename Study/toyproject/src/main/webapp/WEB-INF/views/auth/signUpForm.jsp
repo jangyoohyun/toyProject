@@ -9,10 +9,10 @@
 
 		<form>
 			<div class="form-group">
-				<label class="form-label">아이디</label> <input
-					type="text" class="form-control mb-1" id="username"
-					name="username" placeholder="아이디" required="required"> 
-					<font id="checkFont"></font>
+				<label class="form-label">아이디</label> <input type="text"
+					class="form-control mb-1" id="username" name="username"
+					placeholder="아이디" required="required"> 
+					
 			</div>
 
 			<div class="form-group mt-3">
@@ -24,7 +24,13 @@
 			<div class="form-group mt-3">
 				<label class="form-label">이름</label> <input type="text"
 					class="form-control" id="name" name="name" placeholder="이름"
-					required="required"> 
+					required="required">
+			</div>
+			
+			<div class="form-group mt-3">
+				<label class="form-label">이메일</label> <input type="email"
+					class="form-control" id="email" name="email" placeholder="이메일"
+					required="required">
 			</div>
 
 		</form>
@@ -32,7 +38,7 @@
 		<div class="btn-toolbar justify-content-end mt-3" role="toolbar"
 			aria-label="Toolbar with button groups">
 			<div class="btn-group">
-				<button type="button" id="signUpBtn" class="btn border-secondary">가입하기</button>
+				<button id="signUpBtn" class="btn border-secondary">가입하기</button>
 			</div>
 		</div>
 

@@ -1,0 +1,5 @@
+package com.study.toyproject.web.dto;
+
+public class ExceptionResponse {
+
+}

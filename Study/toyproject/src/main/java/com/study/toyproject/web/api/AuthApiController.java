@@ -1,8 +1,11 @@
 package com.study.toyproject.web.api;
 
+import javax.validation.Valid;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,7 +28,7 @@ public class AuthApiController {
 	private final AuthService authService;
 
 	@PutMapping("/api/auth/{userId}/update")
-	public CMRespDto<?> userUpate(@PathVariable int userId, @RequestBody UserUpdateDto userUpdateDto,
+	public CMRespDto<?> userUpate(@PathVariable int userId, @Valid @RequestBody UserUpdateDto userUpdateDto,
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 
 		User userEntity = authService.userUpdate(userId, userUpdateDto.toEntity());
@@ -35,12 +38,12 @@ public class AuthApiController {
 	}
 	
 	@PostMapping("/api/auth/signUp")
-	public CMRespDto<?> signUp(@RequestBody SignUpDto signUpDto, Errors errors, Model model) {
-	
+	public ResponseEntity<?> signUp(@Valid @RequestBody SignUpDto signUpDto){
+
 		User user = signUpDto.toEntity();
 		authService.signUp(user);
 
-		return new CMRespDto<>(1, "회원정보 수정 성공", null);
+		return new ResponseEntity<>(new CMRespDto<>(1, "회원가입 성공", null), HttpStatus.OK);
 
 	}
 
