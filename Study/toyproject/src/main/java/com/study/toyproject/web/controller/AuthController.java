@@ -43,6 +43,16 @@ public class AuthController {
 	public ResponseEntity<Boolean> checkUsername(@PathVariable String username) {
 		return ResponseEntity.ok(authService.checkUsername(username));
 	}
+	
+	@GetMapping("/auth/findUsername")
+	public String findUsername() {
+		return "/auth/findUsername";
+	}
+	
+	@GetMapping("/auth/findPassword")
+	public String findPassword() {
+		return "/auth/findPassword";
+	}
 
 
 }

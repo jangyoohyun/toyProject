@@ -12,35 +12,35 @@
 				<label class="form-label">아이디</label> <input type="text"
 					class="form-control mb-1" id="username" name="username"
 					placeholder="아이디" required="required"> 
-					<font id="checkUsername" style="color: red;"></font>
+					<font id="checkUsername"></font>
 			</div>
 
 			<div class="form-group mt-3">
 				<label class="form-label">비밀번호</label> <input type="password"
 					class="form-control mb-1" id="password" name="password"
 					placeholder="비밀번호" required="required">
-					<font id="checkPassword" style="color: red;"></font>
+					<font id="checkPassword"></font>
 			</div>
 
 			<div class="form-group mt-3">
 				<label class="form-label">이름</label> <input type="text"
 					class="form-control" id="name" name="name" placeholder="이름"
 					required="required">
-					<font id="checkName" style="color: red;"></font>
+					<font id="checkName"></font>
 			</div>
 			
 			<div class="form-group mt-3">
 				<label class="form-label">이메일</label> <input type="email"
 					class="form-control" id="email" name="email" placeholder="이메일"
 					required="required">
-					<font id="checkEmail" style="color: red;"></font>
+					<font id="checkEmail"></font>
 			</div>
 			
 			<div class="form-group mt-3">
 				<label class="form-label">휴대폰</label> <input type="tel"
 					class="form-control" id="phone" name="phone" placeholder="휴대폰"
 					required="required">
-					<font id="checkPhone" style="color: red;"></font>
+					<font id="checkPhone"></font>
 			</div>
 
 		</form>

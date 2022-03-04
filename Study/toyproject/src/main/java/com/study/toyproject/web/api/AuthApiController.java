@@ -44,7 +44,7 @@ public class AuthApiController {
 	}
 	
 	@PostMapping("/api/auth/signUp")
-	public ResponseEntity<?> signUp(@Valid @RequestBody SignUpDto signUpDto, BindingResult bindingResult){
+	public ResponseEntity<?> signUp(@Valid @RequestBody SignUpDto signUpDto, BindingResult bindingResult, Model model){
 		
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();
@@ -52,7 +52,7 @@ public class AuthApiController {
 			for(FieldError error:bindingResult.getFieldErrors()) {
 				errorMap.put(error.getField(), error.getDefaultMessage());
 			}
-			return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
 		}
 		
 		User user = signUpDto.toEntity();
