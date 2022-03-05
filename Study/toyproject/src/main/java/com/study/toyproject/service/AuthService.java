@@ -72,5 +72,10 @@ public class AuthService {
 		
 		return validatorResult;
 	}
+
+	public User findUsername(String email) {
+		
+		return userRepository.findByEmail(email);
+	}
 	
 }

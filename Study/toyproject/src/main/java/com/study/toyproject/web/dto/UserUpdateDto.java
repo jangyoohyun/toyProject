@@ -1,6 +1,7 @@
 package com.study.toyproject.web.dto;
 
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,9 +25,11 @@ public class UserUpdateDto {
 	private String name;
 	
 	@NotBlank(message = "이메일을 입력해주세요.")
-	@Pattern(regexp = "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i", message = "이메일 형식에 맞게 입력해주세요!")
+	@Email(message = "이메일 형식에 맞게 입력해주세요.")
 	private String email;
 	
+	@NotBlank(message = "휴대폰 번호를 입력해주세요.")
+	@Pattern(regexp = "^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$", message = "휴대폰 번호 형식에 맞게 입력해주세요.")
 	private String phone;
 	
 	public User toEntity() {

@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.study.toyproject.domain.user.User;
 import com.study.toyproject.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -44,10 +46,29 @@ public class AuthController {
 		return ResponseEntity.ok(authService.checkUsername(username));
 	}
 	
+	@GetMapping("/auth/findUsernameForm")
+	public String findUsernameForm() {
+		return "/auth/findUsernameForm";
+	}
+	
+	@PostMapping("/auth/{email}")
+	public String findUsername(@PathVariable String email, Model model, User user) {
+				
+		if(authService.findUsername(email) == null) {
+			model.addAttribute("msg", "실패");
+			return "/auth/findUsernameForm";
+		} else {
+			model.addAttribute("findUser", authService.findUsername(user.get));
+			System.out.println(user.getUser);
+			return "/auth/findUsername";
+		} 
+	}
+	
 	@GetMapping("/auth/findUsername")
-	public String findUsername() {
+	public String findUsernamename() {
 		return "/auth/findUsername";
 	}
+
 	
 	@GetMapping("/auth/findPassword")
 	public String findPassword() {

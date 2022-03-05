@@ -106,6 +106,10 @@ auth = {
 		$("#signUpBtn").on("click", () => {
 			this.signUpBtn();
 		})
+
+		$("#findUsernameBtn").on("click", () => {
+			this.findUsernameBtn();
+		})
 	},
 
 
@@ -165,6 +169,24 @@ auth = {
 		} else {
 			return false;
 		}
+	},
+
+	findUsernameBtn: function() {
+
+		let email = $("#findEmail").val()
+
+		$.ajax({
+			type: "post",
+			url: `/auth/${email}`,
+			contentType: "application/json; charset-utf-8",
+			data: JSON.stringify(email)
+		}).done(res => {
+			location.href="/auth/findUsername";
+		}).fail(error => {
+			console.log(error);
+			alert(JSON.stringify(error));
+		});
+
 	}
 }
 

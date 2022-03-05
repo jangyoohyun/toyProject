@@ -9,7 +9,6 @@
 
 		<form class="px-4 py-3" action="/auth/signIn" method="post">
 
-
 			<div class="form-group">
 				<label for="userId" class="form-label">아이디</label> <input
 					type="text" class="form-control" name="username" placeholder="아이디">
@@ -32,7 +31,7 @@
 		</form>
 
 		<div class="align-center" style="text-align: center;">
-			<a href="/auth/findUsername"><span>아이디 찾기</span></a>&nbsp;/&nbsp;<a
+			<a href="/auth/findUsernameForm"><span>아이디 찾기</span></a>&nbsp;/&nbsp;<a
 				href="/auth/findPassword"><span>비밀번호 찾기</span></a>
 		</div>
 
