@@ -47,6 +47,7 @@ public class User extends BaseTimeEntity{
 	@Column(nullable = false)
 	private String email;
 	
+	@Column(nullable = false)
 	private String phone;
 	
 	private String role;
@@ -66,6 +67,5 @@ public class User extends BaseTimeEntity{
 	@OneToMany(mappedBy = "user")
 	@JsonIgnoreProperties({"user", "photo"})
 	private List<PhotoComment> photoComments;
-	
 
 }

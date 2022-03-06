@@ -16,30 +16,35 @@
 				<label class="form-label">아이디</label> <input type="text"
 					class="form-control" id="username" name="username"
 					value="${principal.user.username}" readonly="readonly">
+					<span id="checkUsername"></span>
 			</div>
 
 			<div class="form-group mt-3">
 				<label class="form-label">비밀번호</label> <input type="password"
 					class="form-control" id="password" name="password"
 					required="required">
+					<span id="checkPassword"></span>
 			</div>
 
 			<div class="form-group mt-3">
 				<label class="form-label">이름</label> <input type="text"
 					class="form-control" id="name" name="name"
 					value="${principal.user.name}" required="required">
+					<span id="checkName"></span>
 			</div>
 			
 			<div class="form-group mt-3">
 				<label class="form-label">이메일</label> <input type="email"
 					class="form-control" id="email" name="email"
 					value="${principal.user.email}" required="required">
+					<span id="checkEmail"></span>
 			</div>
 
 			<div class="form-group mt-3">
 				<label class="form-label">휴대폰번호</label> <input type="tel"
 					class="form-control" id="phone" name="phone"
 					value="${principal.user.phone}" required="required">
+					<span id="checkPhone"></span>
 			</div>
 
 		</form>

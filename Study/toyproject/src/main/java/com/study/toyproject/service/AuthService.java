@@ -75,7 +75,8 @@ public class AuthService {
 
 	public User findUsername(String email) {
 		
-		return userRepository.findByEmail(email);
+		return userRepository.mfindByEmail(email);
+		
 	}
 	
 }

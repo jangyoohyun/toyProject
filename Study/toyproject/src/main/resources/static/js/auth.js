@@ -135,7 +135,7 @@ auth = {
 			}).done(res => {
 				location.href = "/";
 			}).fail(error => {
-				alert(JSON.stringify(error));
+				alert("입력값을 확인 후 다시 시도해주세요!");
 			});
 		} else {
 			return false;
