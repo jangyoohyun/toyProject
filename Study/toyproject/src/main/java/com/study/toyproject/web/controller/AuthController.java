@@ -1,6 +1,5 @@
 package com.study.toyproject.web.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.toyproject.domain.user.User;
 import com.study.toyproject.service.AuthService;
@@ -54,18 +52,20 @@ public class AuthController {
 	@PostMapping("/auth/{email}")
 	public String findUsername(@PathVariable String email, Model model, User user) {
 
+
 		if (authService.findUsername(email) == null) {
-			return "/auth/findUsernameForm";
+			return "redirect:/auth/findUsernameForm";
 		} else {
 			User userEntity = authService.findUsername(email);
 			model.addAttribute("username", userEntity.getUsername());
-			return "/auth/findUsername";
+			return "redirect:/auth/findUsername";
 		}
 
 	}
-
+	
 	@GetMapping("/auth/findUsername")
-	public String findUsernamename() {
+	public String findUser() {
+		
 		return "/auth/findUsername";
 	}
 

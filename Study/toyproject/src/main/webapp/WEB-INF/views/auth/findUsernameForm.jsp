@@ -8,16 +8,14 @@
 		<h1 class="text-center">아이디 찾기</h1>
 
 		<form>
-
 			<div class="form-group">
 				<label for="userId" class="form-label">이메일</label> <input
-					type="text" class="form-control" id="findEmail" name="findEmail"
+					type="text" class="form-control" id="email" name="email"
 					placeholder="회원가입시 입력하신 이메일 주소를 입력해주세요.">
 			</div>
-			
 		</form>
 		
-		<span>${msg}</span>
+		<%-- <span>${msg}</span> --%>
 
 		<div class="btn-toolbar justify-content-end mt-2" role="toolbar"
 			aria-label="Toolbar with button groups">

@@ -173,13 +173,13 @@ auth = {
 
 	findUsernameBtn: function() {
 
-		let email = $("#findEmail").val()
+		let email = $("#email").val()
 
 		$.ajax({
 			type: "post",
 			url: `/auth/${email}`,
 			contentType: "application/json; charset-utf-8",
-			data: JSON.stringify(email)
+			data: JSON.stringify(email),
 		}).done(res => {
 			location.href="/auth/findUsername";
 		}).fail(error => {
