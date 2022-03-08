@@ -68,7 +68,9 @@ public class BoardController {
 	@GetMapping("/board/{id}")
 	public String Detail(@PathVariable int id, Model model) {
 		
+		boardService.updateView(id);
 		model.addAttribute("board", boardService.postDetail(id));
+		
 		
 		return "/board/boardDetail";
 	}

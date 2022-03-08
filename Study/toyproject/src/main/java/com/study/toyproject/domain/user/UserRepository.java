@@ -9,10 +9,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findByUsername(String username);
 	
-	boolean existsByUsername(String username);
+	Boolean existsByUsername(String username);
 	
-	@Query(value = "select * from user where email = :email", nativeQuery = true)
-	User mfindByEmail(String email);
+	Boolean existsByEmail(String email);
+	
+	User findByEmail(String email);
 
 	@Query(value = "select * from user where username = :username and email = :email", nativeQuery = true)
 	User mfindByPassword(String username, String email);

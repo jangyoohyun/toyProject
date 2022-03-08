@@ -55,22 +55,20 @@ public class AuthService {
 
 		userUpdate.setPassword(encPassword);
 		userUpdate.setName(user.getName());
-		userUpdate.setPhone(user.getPhone());
 		userUpdate.setEmail(user.getEmail());
 
 		return userUpdate;
 
 	}
 
-	public Boolean checkUsername(String username) {
+	public boolean checkUsername(String username) {
 
 		return userRepository.existsByUsername(username);
 	}
-
 	
 	public User findUsername(String email) {
 
-		return userRepository.mfindByEmail(email);
+		return userRepository.findByEmail(email);
 
 	}
 
@@ -87,15 +85,17 @@ public class AuthService {
 			userEntity.setPassword(password);
 			
 			MimeMessage message = javaMailSender.createMimeMessage();
-			message.setSubject("임시 비밀번호입니다.");
+			
+			String mailContent = "안녕하세요.\n"
+					+ "회원님께서 요청하신 임시 비밀번호는 "+password+" 입니다.\n"
+					+ "임시 비밀번호는 발급 즉시 변경을 권장드립니다.\n"
+					+ "감사합니다.";
+			
+			message.setSubject("댕구랜드 임시 비밀번호입니다.");
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(userEntity.getEmail()));
-			message.setText("<p>안녕하세요.</p>"
-					+ "<br>"
-					+ "<p>회원님께서 요청하신 임시 비밀번호는 다음과 같습니다.<br>"
-					+ password+"<br>"
-					+ "임시비밀번호는 발급받는 즉시 다시 로그인 후 변경을 권장드립니다.<br>"
-					+ "감사합니다.");
+			message.setText(mailContent);
 			message.setSentDate(new Date());
+			
 			javaMailSender.send(message);
 			
 			userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
@@ -103,9 +103,14 @@ public class AuthService {
 			return userEntity;
 
 		} else {
+			
 			return null;
+			
 		}
+		
 
 	}
+
+	
 
 }

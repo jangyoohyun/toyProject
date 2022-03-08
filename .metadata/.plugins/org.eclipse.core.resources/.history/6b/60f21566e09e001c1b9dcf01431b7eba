@@ -1,0 +1,5 @@
+package com.study.toyproject.config.oauth;
+
+public class OAuth2DetailsService {
+
+}

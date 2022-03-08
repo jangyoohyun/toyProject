@@ -8,9 +8,7 @@ server:
       force: true
       
 spring:
-
-
-          
+      
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3366/toy?serverTimezone=UTC&characterEncoding=UTF-8
@@ -38,7 +36,6 @@ spring:
     user:
       name: test
       password: 1234
-     
 
 file:
   path: C:\Users\Naver\Desktop\toyProject\upload\

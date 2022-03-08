@@ -1,5 +1,5 @@
 let pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-let nameJ = /^[가-힣]{2,6}$/;
+let nameJ = /^[가-힣]{2,10}$/;
 let idJ = /^[a-z0-9]{4,12}$/;
 let emailJ = /^[0-9a-zA-Z]([-_￦.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_￦.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
 let phoneJ = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
@@ -7,6 +7,11 @@ let phoneJ = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 $("#username").blur(() => {
 
 	let username = $("#username").val();
+
+	if (username == "") {
+		$("#checkUsername").text("아이디를 입력해주세요.");
+		$("#checkUsername").css("color", "red");
+	}
 
 	$.ajax({
 		type: "get",
@@ -16,15 +21,15 @@ $("#username").blur(() => {
 		if (res == true) {
 			$("#checkUsername").text("사용중인 아이디입니다.");
 			$("#checkUsername").css("color", "red");
-		} else if (idJ.test(username)) {
-			$("#checkUsername").text("");
-		} else if (username == "") {
-			$("#checkUsername").text("아이디를 입력해주세요.");
-			$("#checkUsername").css("color", "red");
 		} else {
-			$("#checkUsername").text("아이디는 최소 6자, 영문자로 시작하는 영문자 또는 숫자 6~20자 이내로 입력해주세요.");
-			$("#checkUsername").css("color", "red");
+			if (!idJ.test(username)) {
+				$("#checkUsername").text("아이디는 최소 6자, 영문자로 시작하는 영문자 또는 숫자 6~20자 이내로 입력해주세요.");
+				$("#checkUsername").css("color", "red");
+			} else {
+				$("#checkUsername").text("");
+			}
 		}
+
 	}).fail(error => {
 		console.log(JSON.stringify(error));
 	});
@@ -51,21 +56,32 @@ $("#password").blur(() => {
 
 $("#name").blur(() => {
 
-	let name = $("#name").val();
+	let nick = $("#name").val();
 
 	if (name == "") {
 		$("#checkName").text("이름을 입력해주세요.");
 		$("#checkName").css("color", "red");
-	} else {
-		if (!nameJ.test(name)) {
-			$("#checkName").text("이름은 한글 2~6자 이내로 입력해주세요.");
-			$("#checkName").css("color", "red");
-		} else {
-			$("#checkName").text("");
-		}
 	}
 
+	$.ajax({
+		type: "get",
+		url: `/auth/${nick}`
+	}).done(res => {
 
+		if (res == true) {
+			$("#checkName").text("사용중인 닉네임입니다.");
+			$("#checkName").css("color", "red");
+		} else {
+			if (!nameJ.test(nick)) {
+				$("#checkName").text("이름은 한글 2~6자 이내로 입력해주세요.");
+				$("#checkName").css("color", "red");
+			} else {
+				$("#checkName").text("");
+			}
+		}
+	}).fail(error => {
+
+	});
 
 })
 
@@ -200,7 +216,7 @@ auth = {
 			url: "/api/auth/findPassword",
 			contentType: "application/json; charset-utf-8",
 			data: JSON.stringify(data)
-		}).done((data) => {
+		}).done(res => {
 			location.href = "/auth/signInForm";
 		}).fail(error => {
 			alert("입력하신 정보와 일치하는 사용자가 없습니다. 확인 후 다시 시도해주세요.");

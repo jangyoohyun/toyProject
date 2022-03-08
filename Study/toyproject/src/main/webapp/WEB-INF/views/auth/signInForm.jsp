@@ -30,6 +30,13 @@
 			</div>
 		</form>
 
+		<div class="text-center mb-1">
+			<button style="background-color: #faf2db; border: 0; font-weight: 600; font-size: 15px;"
+				onclick="javascript:location.href=`/oauth2/authorization/facebook`">
+				<i class="fab fa-facebook-square" style="color: #385185;"></i> <span>Facebook으로 로그인</span>
+			</button>
+		</div>
+
 		<div class="align-center" style="text-align: center;">
 			<a href="/auth/findUsernameForm"><span>아이디 찾기</span></a>&nbsp;/&nbsp;<a
 				href="/auth/findPasswordForm"><span>비밀번호 찾기</span></a>

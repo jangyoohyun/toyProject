@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.study.toyproject.config.oauth.OAuth2DetailsService;
 import com.study.toyproject.handler.CustomAuthFailHandler;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	private final CustomAuthFailHandler customAuthFailHandler;
+	private final OAuth2DetailsService oAuth2DetailsService;
 
 	@Bean
 	BCryptPasswordEncoder encoded() {
@@ -36,7 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginPage("/auth/signInForm")
 			.loginProcessingUrl("/auth/signIn")
 			.failureHandler(customAuthFailHandler)
-			.defaultSuccessUrl("/");
+			.defaultSuccessUrl("/")
+			.and()
+			.oauth2Login() 
+			.userInfoEndpoint()
+			.userService(oAuth2DetailsService);
 
 	}
 

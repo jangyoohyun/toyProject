@@ -49,5 +49,8 @@ public class Photo {
 	
 	@OneToMany(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<PhotoComment> photoComments;
+	
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private int view;
 
 }

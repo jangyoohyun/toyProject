@@ -43,7 +43,7 @@ public class AuthController {
 	public ResponseEntity<Boolean> checkUsername(@PathVariable String username) {
 		return ResponseEntity.ok(authService.checkUsername(username));
 	}
-
+	
 	@GetMapping("/auth/findUsernameForm")
 	public String findUsernameForm() {
 		return "/auth/findUsernameForm";
@@ -63,13 +63,5 @@ public class AuthController {
 		return "/auth/findPasswordForm";
 	}
 	
-	@GetMapping("/auth/changePassword/{password}/{content}")
-	public String changePassword(@PathVariable String toMail, @PathVariable String content) {
-		
-		
-		
-		return null;
-		
-	}
 
 }

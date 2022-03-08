@@ -71,11 +71,11 @@ public class AuthApiController {
 	@PostMapping("/api/auth/findPassword")
 	public ResponseEntity<?> findPassword(@RequestBody UserDto userDto) throws MessagingException {
 		
-		if(authService.findPassword(userDto.getUsername(), userDto.getEmail()) == null) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		if(authService.findPassword(userDto.getUsername(), userDto.getEmail()) != null) {
+			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			User userEntity = authService.findPassword(userDto.getUsername(), userDto.getEmail());				
-			return new ResponseEntity<>(userEntity, HttpStatus.OK);
+			authService.findPassword(userDto.getUsername(), userDto.getEmail());				
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
 	}

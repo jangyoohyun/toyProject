@@ -12,6 +12,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Fontawesome -->
+<script src="https://kit.fontawesome.com/67f4370b70.js" crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
@@ -29,7 +31,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light rounded"
 			style="background-color: #958D85">
 			<div class="container-fluid">
-				<a class="navbar-brand text-white" href="<c:url value="/"/>">HOME</a>
+				<a class="navbar-brand text-white" href="<c:url value="/"/>">댕구랜드</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false"
@@ -39,7 +41,7 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item "><a class="nav-link text-white"
-							href="<c:url value="/board?page=0"/>">다이어리</a></li>
+							href="<c:url value="/board?page=0"/>">게시판</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							href="<c:url value="/photo"/>">사진첩</a></li>
 						<c:choose>

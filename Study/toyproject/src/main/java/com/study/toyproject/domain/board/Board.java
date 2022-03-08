@@ -50,5 +50,7 @@ public class Board extends BaseTimeEntity{
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<BoardComment> boardComments;
 
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private int view;
 
 }
