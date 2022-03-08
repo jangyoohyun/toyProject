@@ -1,8 +1,6 @@
 package com.study.toyproject.web.api;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -10,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.study.toyproject.config.auth.PrincipalDetails;
 import com.study.toyproject.domain.user.User;
 import com.study.toyproject.service.AuthService;
-import com.study.toyproject.web.dto.CMRespDto;
-import com.study.toyproject.web.dto.SignUpDto;
+import com.study.toyproject.web.dto.UserDto;
 import com.study.toyproject.web.dto.UserUpdateDto;
 
 import lombok.RequiredArgsConstructor;
@@ -34,32 +29,61 @@ public class AuthApiController {
 	private final AuthService authService;
 
 	@PutMapping("/api/auth/{userId}/update")
-	public ResponseEntity<?> userUpate(@PathVariable int userId, @Valid @RequestBody UserUpdateDto userUpdateDto,
+	public ResponseEntity<?> userUpate(@PathVariable int userId, @Valid @RequestBody UserUpdateDto userUpdateDto, BindingResult bindingResult,
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 
-		User userEntity = authService.userUpdate(userId, userUpdateDto.toEntity());
+		if(bindingResult.hasErrors()) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		User userEntity = authService.userUpdate(userId, userUpdateDto.updateEntity());
 		principalDetails.setUser(userEntity);
 		
-		return new ResponseEntity<>(new CMRespDto<>(1, "회원정보 수정 성공", userEntity), HttpStatus.OK);
+		return new ResponseEntity<>(userEntity, HttpStatus.OK);
 	}
 	
 	@PostMapping("/api/auth/signUp")
-	public ResponseEntity<?> signUp(@Valid @RequestBody SignUpDto signUpDto, BindingResult bindingResult, Model model){
+	public ResponseEntity<?> signUp(@Valid @RequestBody UserDto userDto, BindingResult bindingResult, Model model){
 		
 		if(bindingResult.hasErrors()) {
-			Map<String, String> errorMap = new HashMap<>();
-			
-			for(FieldError error:bindingResult.getFieldErrors()) {
-				errorMap.put(error.getField(), error.getDefaultMessage());
-			}
-			return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		User user = signUpDto.toEntity();
+		User user = userDto.toEntity();
 		authService.signUp(user);
 
-		return new ResponseEntity<>(new CMRespDto<>(1, "회원가입 성공", null), HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 
+	}
+	
+	@PostMapping("/api/auth/{email}")
+	public ResponseEntity<?> findUsername(@PathVariable String email, User user) {
+
+		if (authService.findUsername(email) == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			User userEntity = authService.findUsername(email);
+			return new ResponseEntity<>(userEntity.getUsername(), HttpStatus.OK);
+		}
+
+	}
+	
+	@PostMapping("/api/auth/findPassword")
+	public ResponseEntity<?> findPassword(@RequestBody UserDto userDto) throws MessagingException {
+		
+		if(authService.findPassword(userDto.getUsername(), userDto.getEmail()) == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			User userEntity = authService.findPassword(userDto.getUsername(), userDto.getEmail());				
+			return new ResponseEntity<>(userEntity, HttpStatus.OK);
+		}
+		
+	}
+	
+	@PostMapping("/api/auth/changPassword")
+	public ResponseEntity<?> changePassword() {
+		
+		return null;
 	}
 
 }

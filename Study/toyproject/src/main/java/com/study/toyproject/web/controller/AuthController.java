@@ -49,29 +49,27 @@ public class AuthController {
 		return "/auth/findUsernameForm";
 	}
 
-	@PostMapping("/auth/{email}")
-	public String findUsername(@PathVariable String email, Model model, User user) {
-
-
-		if (authService.findUsername(email) == null) {
-			return "redirect:/auth/findUsernameForm";
-		} else {
-			User userEntity = authService.findUsername(email);
-			model.addAttribute("username", userEntity.getUsername());
-			return "redirect:/auth/findUsername";
-		}
-
-	}
 	
-	@GetMapping("/auth/findUsername")
-	public String findUser() {
+	@GetMapping("/auth/findUsername/{username}")
+	public String findUser(@PathVariable String username, Model model) {
+		
+		model.addAttribute("username", username);
 		
 		return "/auth/findUsername";
 	}
 
-	@GetMapping("/auth/findPassword")
+	@GetMapping("/auth/findPasswordForm")
 	public String findPassword() {
-		return "/auth/findPassword";
+		return "/auth/findPasswordForm";
+	}
+	
+	@GetMapping("/auth/changePassword/{password}/{content}")
+	public String changePassword(@PathVariable String toMail, @PathVariable String content) {
+		
+		
+		
+		return null;
+		
 	}
 
 }

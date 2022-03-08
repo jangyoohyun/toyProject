@@ -106,7 +106,6 @@ let boardList = {
 				url: `/api/board/comment/${data.boardId}`,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset-utf-8",
-				dataType: "json"
 			}).done(res => {
 				location.href = `/board/${data.boardId}`;
 			}).fail(error => {
@@ -128,7 +127,6 @@ let boardList = {
 			$.ajax({
 				type: "delete",
 				url: `/api/board/${boardId}/delete/${commentId}`,
-				dataType: "json"
 			}).done(res => {
 				location.href = "/board/" + boardId;
 			}).fail(error => {

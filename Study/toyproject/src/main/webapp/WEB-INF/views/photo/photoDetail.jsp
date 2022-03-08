@@ -49,6 +49,7 @@
 <div class="card mb-4">
 	<div class="card-header" style="background-color: #faf2db">댓글 리스트</div>
 	<ul id="reply-box" class="list-group">
+	
 		<c:forEach var="comment" items="${photo.photoComments}">
 
 			<li id="reply-${comment.id}"

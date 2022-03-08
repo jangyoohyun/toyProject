@@ -1,0 +1,12 @@
+package com.study.toyproject.util;
+
+import com.study.toyproject.web.dto.UserDto;
+
+public class Mail {
+
+	public void sendMail(UserDto userDto) {
+		
+		
+	}
+	
+}

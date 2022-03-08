@@ -51,7 +51,6 @@ let photoList = {
 				url: `/api/photo/comment/${data.photoId}`,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset-utf-8",
-				dataType: "json"
 			}).done(res => {
 				location.href = `/photo/${data.photoId}`;
 			}).fail(error => {
@@ -73,7 +72,6 @@ let photoList = {
 			$.ajax({
 				type: "delete",
 				url: `/api/photo/${photoId}/delete/${commentId}`,
-				dataType: "json"
 			}).done(res => {
 				location.href = "/photo/" + photoId;
 			}).fail(error => {
@@ -87,7 +85,7 @@ let photoList = {
 	},
 
 	commentUpdate: function(photoId, commentId) {
-
+		
 		if ($("#commentUpdateDisplay-" + commentId).css('display') == 'none') {
 			$("#commentUpdateDisplay-" + commentId).show();
 
@@ -100,6 +98,7 @@ let photoList = {
 					let data = {
 						photoCommentContent: $("#commentUpdateContent-" + commentId).val()
 					}
+
 
 					$.ajax({
 						type: "PUT",

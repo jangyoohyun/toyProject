@@ -2,7 +2,7 @@ let pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 let nameJ = /^[가-힣]{2,6}$/;
 let idJ = /^[a-z0-9]{4,12}$/;
 let emailJ = /^[0-9a-zA-Z]([-_￦.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_￦.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-let phoneJ = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+let phoneJ = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 
 $("#username").blur(() => {
 
@@ -37,12 +37,15 @@ $("#password").blur(() => {
 	if (password == "") {
 		$("#checkPassword").text("비밀번호를 입력해주세요.");
 		$("#checkPassword").css("color", "red");
-	} else if (!pwJ.test(password)) {
-		$("#checkPassword").text("최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요")
-		$("#checkPassword").css("color", "red");
 	} else {
-		$("#checkPassword").text("");
+		if (!pwJ.test(password)) {
+			$("#checkPassword").text("최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요")
+			$("#checkPassword").css("color", "red");
+		} else {
+			$("#checkPassword").text("");
+		}
 	}
+
 
 })
 
@@ -53,12 +56,16 @@ $("#name").blur(() => {
 	if (name == "") {
 		$("#checkName").text("이름을 입력해주세요.");
 		$("#checkName").css("color", "red");
-	} else if (!nameJ.test(name)) {
-		$("#checkName").text("이름은 한글 2~6자 이내로 입력해주세요.");
-		$("#checkName").css("color", "red");
 	} else {
-		$("#checkPassword").text("");
+		if (!nameJ.test(name)) {
+			$("#checkName").text("이름은 한글 2~6자 이내로 입력해주세요.");
+			$("#checkName").css("color", "red");
+		} else {
+			$("#checkName").text("");
+		}
 	}
+
+
 
 })
 
@@ -69,30 +76,20 @@ $("#email").blur(() => {
 	if (email == "") {
 		$("#checkEmail").text("메일주소를 정확히 입력해주세요.");
 		$("#checkEmail").css("color", "red");
-	} else if (!emailJ.test(email)) {
-		$("#checkEmail").text("메일 형식에 맞게 작성해주세요.");
-		$("#checkEmail").css("color", "red");
 	} else {
-		$("#checkEmail").text("");
+		if (!emailJ.test(email)) {
+			$("#checkEmail").text("메일 형식에 맞게 작성해주세요.");
+			$("#checkEmail").css("color", "red");
+		} else {
+			$("#checkEmail").text("");
+		}
 	}
+
+
 
 })
 
-$("#phone").blur(() => {
 
-	let phone = $("#phone").val();
-
-	if (phone = "") {
-		$("#checkPhone").text("휴대폰 번호를 입력해주세요.");
-		$("#checkPhone").css("color", "red");
-	} else if (!phoneJ.test(phone)) {
-		$("#checkPhone").text("휴대폰번호를 정확히 입력해주세요.");
-		$("#checkPhone").css("color", "red");
-	} else {
-		$("#checkPhone").text("");
-	}
-
-})
 
 
 auth = {
@@ -110,6 +107,10 @@ auth = {
 		$("#findUsernameBtn").on("click", () => {
 			this.findUsernameBtn();
 		})
+
+		$("#findPasswordBtn").on("click", () => {
+			this.findPasswordBtn();
+		})
 	},
 
 
@@ -120,7 +121,6 @@ auth = {
 			password: $("#password").val(),
 			name: $("#name").val(),
 			email: $("#email").val(),
-			phone: $("#phone").val()
 		}
 
 		let userUpdateConfirm = confirm("회원정보를 수정하시겠습니까?");
@@ -149,7 +149,6 @@ auth = {
 			password: $("#password").val(),
 			name: $("#name").val(),
 			email: $("#email").val(),
-			phone: $("#phone").val()
 		}
 
 		let userConfirm = confirm("회원가입을 하시겠습니까?");
@@ -177,14 +176,34 @@ auth = {
 
 		$.ajax({
 			type: "post",
-			url: `/auth/${email}`,
+			url: `/api/auth/${email}`,
 			contentType: "application/json; charset-utf-8",
 			data: JSON.stringify(email),
-		}).done(res => {
-			location.href="/auth/findUsername";
+		}).done((username) => {
+			location.href = `/auth/findUsername/${username}`;
+
 		}).fail(error => {
-			console.log(error);
-			alert(JSON.stringify(error));
+			alert("이메일과 일치하는 아이디가 없습니다. 확인 후 다시 시도해주세요.");
+		});
+
+	},
+
+	findPasswordBtn: function() {
+
+		let data = {
+			username: $("#FPusername").val(),
+			email: $("#FPemail").val()
+		}
+
+		$.ajax({
+			type: "post",
+			url: "/api/auth/findPassword",
+			contentType: "application/json; charset-utf-8",
+			data: JSON.stringify(data)
+		}).done((data) => {
+			location.href = "/auth/signInForm";
+		}).fail(error => {
+			alert("입력하신 정보와 일치하는 사용자가 없습니다. 확인 후 다시 시도해주세요.");
 		});
 
 	}

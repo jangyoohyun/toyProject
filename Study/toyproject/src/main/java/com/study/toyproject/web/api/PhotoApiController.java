@@ -3,6 +3,8 @@ package com.study.toyproject.web.api;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.study.toyproject.config.auth.PrincipalDetails;
 import com.study.toyproject.service.PhotoService;
-import com.study.toyproject.web.dto.CMRespDto;
 import com.study.toyproject.web.dto.PhotoCommentDto;
 
 import lombok.RequiredArgsConstructor;
@@ -26,33 +27,35 @@ public class PhotoApiController {
 	private final PhotoService photoService;
 
 	@DeleteMapping("/api/photo/photoDelete/{id}")
-	public CMRespDto<?> delete(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public ResponseEntity<?> delete(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
 		photoService.photoDelete(id);
 		
-		return new CMRespDto<>(1, "사진 삭제 성공", null);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@PostMapping("/api/photo/comment/{id}")
-	public CMRespDto<?> commentWrite(@Valid @RequestBody PhotoCommentDto photoCommentDto) {
+	public ResponseEntity<?> commentWrite(@Valid @RequestBody PhotoCommentDto photoCommentDto) {
 		photoService.replyWrite(photoCommentDto);
-		return new CMRespDto<>(1, "댓글 작성", null);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/api/photo/{photoId}/delete/{commentId}")
-	public CMRespDto<?> commentDelete(@PathVariable int commentId) {
+	public ResponseEntity<?> commentDelete(@PathVariable int commentId) {
 		
 		photoService.replyDelete(commentId);
 		
-		return new CMRespDto<>(1, "댓글 삭제 성공", null);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@PutMapping("/api/photo/{photoId}/update/{commentId}")
-	public CMRespDto<?> commentUpdate(@PathVariable int commentId, @Valid @RequestBody PhotoCommentDto photoCommentDto) {
+	public ResponseEntity<?> commentUpdate(@PathVariable int commentId, @Valid @RequestBody PhotoCommentDto photoCommentDto) {
+		
+		System.out.println(commentId);
 		
 		photoService.replyUpdate(commentId, photoCommentDto);
 
-		return new CMRespDto<>(1, "댓글 수정 성공", null);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

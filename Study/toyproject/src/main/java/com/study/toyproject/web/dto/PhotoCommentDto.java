@@ -11,10 +11,10 @@ import lombok.Setter;
 public class PhotoCommentDto {
 	
 	@NotNull
-	private Integer userId;
+	private int userId;
 	
 	@NotNull
-	private Integer photoId;
+	private int photoId;
 	
 	@NotBlank(message = "댓글을 입력해주세요!")
 	private String photoCommentContent;
