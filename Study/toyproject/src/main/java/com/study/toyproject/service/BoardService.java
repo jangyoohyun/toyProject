@@ -37,10 +37,7 @@ public class BoardService {
 		return boardRepository.findAll(pageable);
 	}
 	
-	public Page<Board> searchList(String keyword, Pageable pageable) {
-		
-		System.out.println("서비스: "+keyword);
-		
+	public Page<Board> searchList(String keyword, Pageable pageable) {	
 		return boardRepository.findByTitleContaining(keyword, pageable);
 	}
 	

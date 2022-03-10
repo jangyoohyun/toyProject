@@ -8,7 +8,19 @@ server:
       force: true
       
 spring:
-      
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: yoohyean46@gmail.com
+    password: nabxlgsiasyhgogx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3366/toy?serverTimezone=UTC&characterEncoding=UTF-8
@@ -36,6 +48,18 @@ spring:
     user:
       name: test
       password: 1234
+  
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 765319397779904
+            client-secret: 8d976daedd1af0bbd6b4ae8aed7ef1dc
+            scope:
+            - public_profile
+            - email
+          
+     
 
 file:
   path: C:\Users\Naver\Desktop\toyProject\upload\

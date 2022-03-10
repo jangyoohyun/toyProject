@@ -29,33 +29,33 @@ public class AuthApiController {
 	private final AuthService authService;
 
 	@PutMapping("/api/auth/{userId}/update")
-	public ResponseEntity<?> userUpate(@PathVariable int userId, @Valid @RequestBody UserUpdateDto userUpdateDto, BindingResult bindingResult,
-			@AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public ResponseEntity<?> userUpate(@PathVariable int userId, @Valid @RequestBody UserUpdateDto userUpdateDto,
+			BindingResult bindingResult, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
-		if(bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		User userEntity = authService.userUpdate(userId, userUpdateDto.updateEntity());
 		principalDetails.setUser(userEntity);
-		
+
 		return new ResponseEntity<>(userEntity, HttpStatus.OK);
 	}
-	
-	@PostMapping("/api/auth/signUp")
-	public ResponseEntity<?> signUp(@Valid @RequestBody UserDto userDto, BindingResult bindingResult, Model model){
-		
-		if(bindingResult.hasErrors()) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		
-		User user = userDto.toEntity();
-		authService.signUp(user);
 
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	@PostMapping("/api/auth/signUp")
+	public ResponseEntity<?> signUp(@Valid @RequestBody UserDto userDto, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			User user = userDto.toEntity();
+			authService.signUp(user);
+
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
 
 	}
-	
+
 	@PostMapping("/api/auth/{email}")
 	public ResponseEntity<?> findUsername(@PathVariable String email, User user) {
 
@@ -67,22 +67,22 @@ public class AuthApiController {
 		}
 
 	}
-	
+
 	@PostMapping("/api/auth/findPassword")
 	public ResponseEntity<?> findPassword(@RequestBody UserDto userDto) throws MessagingException {
-		
-		if(authService.findPassword(userDto.getUsername(), userDto.getEmail()) != null) {
+
+		if (authService.findPassword(userDto.getUsername(), userDto.getEmail()) != null) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			authService.findPassword(userDto.getUsername(), userDto.getEmail());				
+			authService.findPassword(userDto.getUsername(), userDto.getEmail());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
-	
+
 	@PostMapping("/api/auth/changPassword")
 	public ResponseEntity<?> changePassword() {
-		
+
 		return null;
 	}
 
