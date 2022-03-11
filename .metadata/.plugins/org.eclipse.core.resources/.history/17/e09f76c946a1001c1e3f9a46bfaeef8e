@@ -1,0 +1,26 @@
+package com.study.toyproject.web.api;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.study.toyproject.config.auth.PrincipalDetails;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@RestController
+public class LikesApiController {
+	
+	private final LikesService likesService;
+	
+	@PostMapping("/api/likes/{boardId}/likes")
+	public ResponseEntity<?> likes(@PathVariable int boardId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		likesService.likes(boardId, principalDetailsr);
+		
+	}
+
+}

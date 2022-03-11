@@ -18,6 +18,8 @@
 		</div>
 		<br> <a href="/board"><button class="btn border-secondary">목록으로</button></a>
 
+		<i class="fa-solid fa-heart"></i>
+
 		<c:if test="${board.user.username == principal.username}">
 			<button id="btn-deleteById" class="btn border-danger"
 				style="color: #DB4455; float: right;">삭제</button>

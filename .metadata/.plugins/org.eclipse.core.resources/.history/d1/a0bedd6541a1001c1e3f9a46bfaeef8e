@@ -1,0 +1,5 @@
+package com.study.toyproject.domain.likes;
+
+public class Likes {
+
+}
