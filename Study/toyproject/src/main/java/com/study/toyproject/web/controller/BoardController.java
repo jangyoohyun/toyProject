@@ -66,7 +66,7 @@ public class BoardController {
 	
 
 	@GetMapping("/board/{id}")
-	public String Detail(@PathVariable int id, Model model) {
+	public String Detail(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
 		boardService.updateView(id);
 		model.addAttribute("board", boardService.postDetail(id));
