@@ -3,6 +3,8 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
+<script src="https://kit.fontawesome.com/67f4370b70.js" crossorigin="anonymous"></script>
+
 <table class="table table-hover table-striped mt-4 rounded border"
 	style="text-align: center">
 	<thead>

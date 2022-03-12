@@ -36,7 +36,6 @@ spring:
     user:
       name: test
       password: 1234
-     
 
 file:
   path: C:\Users\Naver\Desktop\toyProject\upload\

@@ -1,0 +1,22 @@
+package com.study.toyproject.service;
+
+import org.springframework.stereotype.Service;
+
+import com.study.toyproject.domain.likes.LikesRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class LikesService {
+	
+	private final LikesRepository likesRepository;
+
+	public void likes(int boardId, int userId) {
+		
+		likesRepository.mLikes(boardId, userId);
+		
+	}
+	
+
+}

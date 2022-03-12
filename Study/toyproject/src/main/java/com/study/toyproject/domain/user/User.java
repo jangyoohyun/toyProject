@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.study.toyproject.domain.board.Board;
 import com.study.toyproject.domain.comment.BoardComment;
 import com.study.toyproject.domain.comment.PhotoComment;
+import com.study.toyproject.domain.likes.Likes;
 import com.study.toyproject.domain.photo.Photo;
 import com.study.toyproject.util.BaseTimeEntity;
 
@@ -64,6 +65,5 @@ public class User extends BaseTimeEntity{
 	@OneToMany(mappedBy = "user")
 	@JsonIgnoreProperties({"user", "photo"})
 	private List<PhotoComment> photoComments;
-	
 
 }

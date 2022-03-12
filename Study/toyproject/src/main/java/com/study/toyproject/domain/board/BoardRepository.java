@@ -13,7 +13,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	Page<Board> findByTitleContaining(String keyword, Pageable pageable);
 	
 	@Modifying
-	@Query(value = "update board set view = view + 1 where id = :id", nativeQuery = true)
-	int updateView(int id);
+	@Query(value = "update board set view = view + 1 where id = :boardId", nativeQuery = true)
+	int updateView(int boardId);
 	
 }
