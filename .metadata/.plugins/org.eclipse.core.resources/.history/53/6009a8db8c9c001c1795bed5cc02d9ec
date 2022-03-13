@@ -1,5 +1,0 @@
-package com.study.toyproject.config.auth;
-
-public class OAuthAttributes {
-
-}
