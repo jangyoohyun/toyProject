@@ -29,7 +29,7 @@ public class BoardController {
 	public String index(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
 
 		model.addAttribute("principal", principalDetails.getUser());
-
+		
 		return "/index";
 	}
 
